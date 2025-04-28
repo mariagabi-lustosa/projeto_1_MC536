@@ -158,26 +158,56 @@ def process_rais_6(tabela6_csv, output_csv):
         delimiter=',', 
         encoding='utf-8',
         low_memory=False,
-        
+        skiprows=11,
+        header=0,
     )
 
+    df.drop(columns=['Unnamed: 0', 'Indicadores', 'Variação Absoluta', 'Variação Relativa'], inplace=True)
+    df.rename(columns={
+        'Unnamed: 2': 'Tipo'
+    }, inplace=True)
 
-def process_rais_9(tabela9_csv, output_csv):
-    """ Process the RAIS Tabela 9 CSV file and save it to a new location.
+    macro_regions = { "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul" }
+    
+    is_region = df['Tipo'].isin(macro_regions)
 
-    Args:
-        tabela9_csv: Path to the CSV file containing the RAIS Tabela 9 data.
-        output_csv: Path to the directory where the processed CSV file will be saved.
-    """
-    df_tabela9 = pd.read_csv(tabela9_csv, delimiter=',', encoding='utf-8')
+    df_uf = df[~is_region]
 
+    stop_uf = df[df['Tipo'] == 'Agricultura, pecuária, produção florestal, pesca e aquicultura'].index
 
-def main(indicadores_csv, output_csv, rais_4_csv):
+    if not stop_uf.empty:
+        df_uf = df_uf.loc[:stop_uf[0]-1]
+
+    df_uf = df_uf.dropna()
+
+    df_uf = df_uf.melt(
+        id_vars=['Tipo'],
+        var_name='Ano',
+        value_name='Renumeração'
+    )
+
+    df_uf.rename(columns={
+        'Tipo': 'uf_nome',
+        'Ano': 'ano',
+        'Renumeração': 'media_remuneracao'
+    }, inplace=True)
+
+    output_file_uf = os.path.join(output_csv, 'rais_tabela6_uf.csv')
+    if os.path.exists(output_file_uf):
+        open(output_file_uf, 'w').close()
+
+    df_uf.to_csv(output_file_uf, index=False, sep=';')
+
+    return
+    
+
+def main(indicadores_csv, rais_4_csv, rais_6_csv, output_csv):
     """ Main function to process the CSV files.
 
     Args:
         indicadores_csv: Path to the CSV file containing the indicadores data.
         rais_4_csv: Path to the CSV file containing the RAIS Tabela 4 data.
+        rais_6_csv: Path to the CSV file containing the RAIS Tabela 6 data.
         output_csv: Path to the directory where the processed CSV file will be saved.
     """
     if not os.path.exists(indicadores_csv):
@@ -191,6 +221,7 @@ def main(indicadores_csv, output_csv, rais_4_csv):
     
     process_indicadores(indicadores_csv, output_csv)
     process_rais_4(rais_4_csv, output_csv)
+    process_rais_6(rais_6_csv, output_csv)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -209,6 +240,12 @@ if __name__ == "__main__":
         help="Path to the CSV file containing the RAIS Tabela 4 data."
     )
     parser.add_argument(
+        "-r6",
+        "--rais_6",
+        default="preprocessed_dataset/RAIS_ano_base_2023_TABELA 6.csv",
+        help="Path to the CSV file containing the RAIS Tabela 6 data."
+    )
+    parser.add_argument(
         "-o",
         "--output",
         default="datasets/",
@@ -217,7 +254,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     indicadores_csv = args.indicadores
     rais_4_csv = args.rais_4
+    rais_6_csv = args.rais_6
     output_csv = args.output
-    main(indicadores_csv, output_csv, rais_4_csv)
+    main(indicadores_csv, rais_4_csv, rais_6_csv, output_csv)
     
     

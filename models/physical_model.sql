@@ -25,11 +25,10 @@ CREATE TABLE IF NOT EXISTS public."Emprego_Por_Setor_E_Municipio"
     municipio_cod integer NOT NULL,
     setor_nome character varying(100) COLLATE pg_catalog."default" NOT NULL,
     num_pessoas_empregadas integer,
-    num_empregos_ofertados integer,
     CONSTRAINT "Emprego_Por_Setor_E_Municipio_pkey" PRIMARY KEY (ano, municipio_cod, setor_nome)
 );
 
-CREATE TABLE IF NOT EXISTS public."Estabelecimento_Economico"
+CREATE TABLE IF NOT EXISTS public."Estabelecimento_Economico_Por_UF"
 (
     ano integer NOT NULL,
     uf_sigla character(2) COLLATE pg_catalog."default",
@@ -68,9 +67,7 @@ CREATE TABLE IF NOT EXISTS public."Remuneracao_Media_Por_UF"
 (
     ano integer NOT NULL,
     uf_sigla character(2) COLLATE pg_catalog."default",
-    setor_nome character varying(100) COLLATE pg_catalog."default",
     media_remuneracao numeric(10, 2),
-    variacao_remuneracao numeric(10, 2),
     CONSTRAINT "Remuneracao_Media_Por_UF_pkey" PRIMARY KEY (ano)
 );
 
@@ -94,7 +91,6 @@ CREATE TABLE IF NOT EXISTS public."Unidade Federativa"
 (
     uf_sigla character(2) COLLATE pg_catalog."default" NOT NULL,
     uf_nome character varying(50) COLLATE pg_catalog."default",
-    macroregiao character varying(30) COLLATE pg_catalog."default",
     CONSTRAINT "Unidade Federativa_pkey" PRIMARY KEY (uf_sigla)
 );
 
@@ -126,7 +122,7 @@ ALTER TABLE IF EXISTS public."Emprego_Por_Setor_E_Municipio"
     ON DELETE NO ACTION;
 
 
-ALTER TABLE IF EXISTS public."Estabelecimento_Economico"
+ALTER TABLE IF EXISTS public."Estabelecimento_Economico_Por_UF"
     ADD CONSTRAINT uf_sigla FOREIGN KEY (uf_sigla)
     REFERENCES public."Unidade Federativa" (uf_sigla) MATCH SIMPLE
     ON UPDATE NO ACTION
@@ -148,13 +144,6 @@ ALTER TABLE IF EXISTS public."Relacao_Area_Setor"
 
 
 ALTER TABLE IF EXISTS public."Relacao_Area_Setor"
-    ADD CONSTRAINT setor_nome FOREIGN KEY (setor_nome)
-    REFERENCES public."Setor_Economico" (setor_nome) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
-
-
-ALTER TABLE IF EXISTS public."Remuneracao_Media_Por_UF"
     ADD CONSTRAINT setor_nome FOREIGN KEY (setor_nome)
     REFERENCES public."Setor_Economico" (setor_nome) MATCH SIMPLE
     ON UPDATE NO ACTION
