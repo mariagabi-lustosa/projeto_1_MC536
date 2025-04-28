@@ -186,9 +186,10 @@ def create_database(cursor):
     """
 
     cursor.execute(table_schema)
+    print("Será??")
 
 
-def main(create_database):
+def main(create_bool):
     """ Main function to create the database and tables.
 
     Args:
@@ -197,14 +198,17 @@ def main(create_database):
     
     connection = psycopg2.connect(
         dbname = 'projeto_1',
-        user = 'admin',
-        password = 'admin123',
-        host = 'postgres',
+        user = 'postgres',
+        password = 'Maria1221@@',
+        host = 'localhost',
         port = '5432'
     )
     cursor = connection.cursor()
 
-    if create_database:
+    print(type(create_bool))
+
+    if create_bool == "True":
+        print(type(cursor))
         create_database(cursor)
 
 
@@ -225,6 +229,6 @@ if __name__ == "__main__":
         help='The path to the directory containing the processed datasets.'
     )
     args = parser.parse_args()
-    create_database = args.create_database
-    main(create_database)
+    create_bool = args.create_database
+    main(create_bool)
     
