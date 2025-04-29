@@ -97,11 +97,11 @@ def create_database(cursor):
             CONSTRAINT "Trajetoria_Curso_pkey" PRIMARY KEY (curso_cod, ano_referencia)
         );
 
-        CREATE TABLE IF NOT EXISTS public."Unidade Federativa"
+        CREATE TABLE IF NOT EXISTS public."Unidade_Federativa"
         (
             uf_sigla character(2) COLLATE pg_catalog."default" NOT NULL,
             uf_nome character varying(50) COLLATE pg_catalog."default",
-            CONSTRAINT "Unidade Federativa_pkey" PRIMARY KEY (uf_sigla)
+            CONSTRAINT "Unidade_Federativa_pkey" PRIMARY KEY (uf_sigla)
         );
 
         ALTER TABLE IF EXISTS public."Curso"
@@ -134,7 +134,7 @@ def create_database(cursor):
 
         ALTER TABLE IF EXISTS public."Instituicao_Superior"
             ADD CONSTRAINT uf_sigla FOREIGN KEY (uf_sigla)
-            REFERENCES public."Unidade Federativa" (uf_sigla) MATCH SIMPLE
+            REFERENCES public."Unidade_Federativa" (uf_sigla) MATCH SIMPLE
             ON UPDATE NO ACTION
             ON DELETE NO ACTION
             NOT VALID;
@@ -142,7 +142,7 @@ def create_database(cursor):
 
         ALTER TABLE IF EXISTS public."Municipio"
             ADD CONSTRAINT uf_sigla FOREIGN KEY (uf_sigla)
-            REFERENCES public."Unidade Federativa" (uf_sigla) MATCH SIMPLE
+            REFERENCES public."Unidade_Federativa" (uf_sigla) MATCH SIMPLE
             ON UPDATE NO ACTION
             ON DELETE NO ACTION;
 
@@ -163,7 +163,7 @@ def create_database(cursor):
 
         ALTER TABLE IF EXISTS public."Remuneracao_Media_Por_UF"
             ADD CONSTRAINT uf_sigla FOREIGN KEY (uf_sigla)
-            REFERENCES public."Unidade Federativa" (uf_sigla) MATCH SIMPLE
+            REFERENCES public."Unidade_Federativa" (uf_sigla) MATCH SIMPLE
             ON UPDATE NO ACTION
             ON DELETE NO ACTION;
 
@@ -189,9 +189,9 @@ def main(create_bool):
     
     connection = psycopg2.connect(
         dbname = 'projeto_1',
-        user = 'admin',
-        password = 'admin123',
-        host = 'postgres',
+        user = 'postgres',
+        password = 'Maria1221@@',
+        host = 'localhost',
         port = '5432'
     )
     cursor = connection.cursor()
