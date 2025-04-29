@@ -77,11 +77,11 @@ def load_education_data(cursor, connection, education_path):
                     uf_nome = row['uf_nome'].strip()
                     uf_sigla = row['uf_sigla'].strip()
 
-                    # Inserts Unidade Federativa
+                    # Inserts Unidade_Federativa
                     if uf_sigla and uf_sigla not in uf_map:
                         cursor.execute(
                             """
-                            INSERT INTO public."Unidade Federativa" (uf_sigla, uf_nome)
+                            INSERT INTO public."Unidade_Federativa" (uf_sigla, uf_nome)
                             VALUES (%s, %s)
                             ON CONFLICT (uf_sigla) DO NOTHING;
                             """,
@@ -280,10 +280,11 @@ def load_rais_6_data(cursor, connection, rais_6_path):
                             """
                             INSERT INTO public."Remuneracao_Media_Por_UF" (ano, uf_sigla, media_remuneracao)
                             VALUES (%s, %s, %s)
-                            ON CONFLICT (ano) DO NOTHING;
+                            ON CONFLICT (ano, uf_sigla) DO NOTHING;
                             """,
                             (ano, uf_sigla, media_remuneracao)
                         )
+                        print(ano, uf_sigla, media_remuneracao)
 
                     processed_rows += 1
 

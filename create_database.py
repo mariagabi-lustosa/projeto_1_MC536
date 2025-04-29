@@ -53,7 +53,7 @@ def create_database(cursor):
             inst_nome character varying(150) COLLATE pg_catalog."default",
             categoria_adm character varying(50) COLLATE pg_catalog."default",
             org_academica character varying(50) COLLATE pg_catalog."default",
-            uf_sigla character(2) NOT NULL,
+            uf_sigla character(2) COLLATE pg_catalog."default" NOT NULL,
             CONSTRAINT "Instituicao_Superior_pkey" PRIMARY KEY (inst_cod)
         );
 
@@ -78,7 +78,7 @@ def create_database(cursor):
             ano integer NOT NULL,
             uf_sigla character(2) COLLATE pg_catalog."default",
             media_remuneracao numeric(10, 2),
-            CONSTRAINT "Remuneracao_Media_Por_UF_pkey" PRIMARY KEY (ano)
+            CONSTRAINT "Remuneracao_Media_Por_UF_pkey" PRIMARY KEY (ano, uf_sigla)
         );
 
         CREATE TABLE IF NOT EXISTS public."Setor_Economico"
