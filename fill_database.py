@@ -94,7 +94,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Area_Atuacao" (area_cod, nome_area_atuacao)
-                            VALUES (%d, %s)
+                            VALUES (%s, %s)
                             ON CONFLICT (area_cod) DO NOTHING;
                             """,
                             (area_cod, nome_area_atuacao)
@@ -106,7 +106,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Instituicao_Superior" (inst_cod, inst_nome, categoria_adm, org_academica, uf_sigla)
-                            VALUES (%d, %s, %d, %d, %s)
+                            VALUES (%s, %s, %s, %s, %s)
                             ON CONFLICT (inst_cod) DO NOTHING;
                             """,
                             (inst_cod, inst_nome, categoria_adm, org_academica, uf_sigla)
@@ -118,7 +118,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Curso" (curso_cod, curso_nome, grau_academico, modo_ensino, area_cod, inst_cod)
-                            VALUES (%d, %s, %d, %d, %d, %d)
+                            VALUES (%s, %s, %s, %s, %s, %s)
                             ON CONFLICT (curso_cod) DO NOTHING;
                             """,
                             (curso_cod, curso_nome, grau_academico, modo_ensino, area_cod, inst_cod)
@@ -130,7 +130,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Trajetoria_Curso" (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
-                            VALUES (%d, %d, %d, %d, %f)
+                            VALUES (%s, %s, %s, %s, %s)
                             ON CONFLICT (curso_cod, ano_referencia) DO NOTHING;
                             """,
                             (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
@@ -209,7 +209,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Municipio" (municipio_cod, municipio_nome, uf_sigla)
-                            VALUES (%d, %s, %s)
+                            VALUES (%s, %s, %s)
                             ON CONFLICT (municipio_cod) DO NOTHING;
                             """,
                             (municipio_cod, municipio_nome, uf_sigla)
@@ -222,7 +222,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Emprego_Por_Setor_E_Municipio" (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
-                            VALUES (%d, %d, %s, %d)
+                            VALUES (%s, %s, %s, %s)
                             ON CONFLICT (ano, municipio_cod, setor_nome) DO NOTHING;
                             """,
                             (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
@@ -271,7 +271,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Remuneracao_Media_Por_UF" (ano, uf_sigla, media_remuneracao)
-                            VALUES (%d, %s, %f)
+                            VALUES (%s, %s, %s)
                             ON CONFLICT (ano) DO NOTHING;
                             """,
                             (ano, uf_sigla, media_remuneracao)

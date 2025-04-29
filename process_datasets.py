@@ -52,6 +52,28 @@ def match_name(name, choices, scorer=fuzz.token_sort_ratio):
     else:
         return (None, 0, None)
 
+def fix_value(val):
+    """ Fix the value by removing dots and converting to integer.
+    
+    Args:
+        val: The value to fix.
+    """
+    try:
+        val_str = str(val)
+        parts = val_str.split('.')
+        if len(parts) == 2:
+            integer_part, decimal_part = parts
+            if len(decimal_part) > 1:
+                return int(integer_part + decimal_part)
+            else:
+                return int(float(val))
+        else:
+            # Handle unexpected formats like '1.436.0' by removing all dots
+            return int(val_str.replace('.', ''))
+    except Exception as e:
+        print(f"Error with value {val}: {e}")
+        return None  # or raise, or some default
+
 
 def process_indicadores(indicadores_csv, output_csv):
     """ Process the indicadores CSV file and save it to a new location.
@@ -180,8 +202,10 @@ def process_rais_4_2021(tabela4_csv, output_csv):
         'Empregados': 'num_pessoas_empregadas'
     }, inplace=True)
 
+    df_melted['num_pessoas_empregadas'] = df_melted['num_pessoas_empregadas'].str.replace(',', '', regex=False)
+
     df_melted = df_melted.dropna()
-    
+
     output_file = os.path.join(output_csv, 'rais_tabela4_2021.csv')
     if os.path.exists(output_file):
         open(output_file, 'w').close()
@@ -314,6 +338,9 @@ def process_rais_4_2023(tabela4_csv, output_csv):
 
     df_melted = df_melted.dropna()
 
+    df_melted['num_pessoas_empregadas'] = df_melted['num_pessoas_empregadas'].apply(fix_value)
+
+
     # Save the processed DataFrame to a new CSV file
     output_file = os.path.join(output_csv, 'rais_tabela4_2023.csv')
     if os.path.exists(output_file):
@@ -417,13 +444,15 @@ def join_rais_4(rais_4_2021, rais_4_2023, output_csv):
     df_2021['municipio_nome'] = df_2021['matched_index'].apply(lambda idx: df_2023.loc[idx, 'municipio_nome'] if pd.notnull(idx) else None)
     df_2021['municipio_cod'] = df_2021['matched_index'].apply(lambda idx: df_2023.loc[idx, 'municipio_cod'] if pd.notnull(idx) else None)
 
-    final_df = df_2021[['uf_sigla', 'municipio_cod', 'municipio_nome', 'setor_nome', 'ano', 'num_pessoas_empregadas']]
+    df_2021 = df_2021[['uf_sigla', 'municipio_cod', 'municipio_nome', 'setor_nome', 'ano', 'num_pessoas_empregadas']]
+    df_2023 = df_2023[['uf_sigla', 'municipio_cod', 'municipio_nome', 'setor_nome', 'ano', 'num_pessoas_empregadas']]
 
+    final_df = pd.concat([df_2021, df_2023], ignore_index=True)
+    final_df = final_df[final_df['uf_sigla'] != 'NI']
     final_df = final_df.dropna()
 
     final_df['municipio_cod'] = final_df['municipio_cod'].astype(int)
     final_df['ano'] = final_df['ano'].astype(int)
-    final_df['num_pessoas_empregadas'] = final_df['num_pessoas_empregadas'].str.replace(',', '', regex=False)
     final_df['num_pessoas_empregadas'] = final_df['num_pessoas_empregadas'].astype(int)
 
     output_file = os.path.join(output_csv, 'rais_tabela4_joined.csv')
