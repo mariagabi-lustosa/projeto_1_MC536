@@ -199,7 +199,7 @@ def load_rais_4_data(cursor, connection, rais_4_path):
                             VALUES (%s)
                             ON CONFLICT (setor_nome) DO NOTHING;
                             """,
-                            (setor_nome)
+                            (setor_nome,)
                         )
                         setor_map[setor_nome] = setor_nome
 
