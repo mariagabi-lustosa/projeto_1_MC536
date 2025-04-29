@@ -94,7 +94,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Area_Atuacao" (area_cod, nome_area_atuacao)
-                            VALUES (%s, %s)
+                            VALUES (%d, %s)
                             ON CONFLICT (area_cod) DO NOTHING;
                             """,
                             (area_cod, nome_area_atuacao)
@@ -106,7 +106,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Instituicao_Superior" (inst_cod, inst_nome, categoria_adm, org_academica, uf_sigla)
-                            VALUES (%s, %s, %s, %s, %s)
+                            VALUES (%d, %s, %d, %d, %s)
                             ON CONFLICT (inst_cod) DO NOTHING;
                             """,
                             (inst_cod, inst_nome, categoria_adm, org_academica, uf_sigla)
@@ -118,7 +118,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Curso" (curso_cod, curso_nome, grau_academico, modo_ensino, area_cod, inst_cod)
-                            VALUES (%s, %s, %s, %s, %s, %s)
+                            VALUES (%d, %s, %d, %d, %d, %d)
                             ON CONFLICT (curso_cod) DO NOTHING;
                             """,
                             (curso_cod, curso_nome, grau_academico, modo_ensino, area_cod, inst_cod)
@@ -130,7 +130,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Trajetoria_Curso" (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
-                            VALUES (%s, %s, %s, %s, %s)
+                            VALUES (%d, %d, %d, %d, %f)
                             ON CONFLICT (curso_cod, ano_referencia) DO NOTHING;
                             """,
                             (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
@@ -200,7 +200,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                             VALUES (%s)
                             ON CONFLICT (setor_nome) DO NOTHING;
                             """,
-                            (setor_nome,)
+                            (setor_nome)
                         )
                         setor_map[setor_nome] = setor_nome
 
@@ -209,7 +209,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Municipio" (municipio_cod, municipio_nome, uf_sigla)
-                            VALUES (%s, %s, %s)
+                            VALUES (%d, %s, %s)
                             ON CONFLICT (municipio_cod) DO NOTHING;
                             """,
                             (municipio_cod, municipio_nome, uf_sigla)
@@ -222,7 +222,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Emprego_Por_Setor_E_Municipio" (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
-                            VALUES (%s, %s, %s, %s)
+                            VALUES (%d, %d, %s, %d)
                             ON CONFLICT (ano, municipio_cod, setor_nome) DO NOTHING;
                             """,
                             (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
@@ -271,7 +271,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Remuneracao_Media_Por_UF" (ano, uf_sigla, media_remuneracao)
-                            VALUES (%s, %s, %s)
+                            VALUES (%d, %s, %f)
                             ON CONFLICT (ano) DO NOTHING;
                             """,
                             (ano, uf_sigla, media_remuneracao)
@@ -310,16 +310,15 @@ def main(datasets_directory):
         datasets_directory: Directory containing the datasets to load.
     """
     try:
-        #connection = psycopg2.connect(
-        #    dbname='projeto_1',
-        #    user='postgres',
-        #    password='Maria1221@@',
-        #    host='localhost',
-        #    port='5432'
-        #)
-        #cursor = connection.cursor()
-        cursor = None
-        connection = None
+        connection = psycopg2.connect(
+            dbname='projeto_1',
+            user='postgres',
+            password='Maria1221@@',
+            host='localhost',
+            port='5432'
+        )
+        cursor = connection.cursor()
+        
         education_path = f'{datasets_directory}/indicadores_educacao.csv'
         load_education_data(cursor, connection, education_path)
 
