@@ -126,7 +126,7 @@ def load_education_data(cursor, connection, education_path):
                         curso_map[curso_cod] = curso_nome
 
                     # Inserts Trajetoria_Curso
-                    if curso_cod and ano:
+                    if curso_cod and ano_referencia:
                         cursor.execute(
                             """
                             INSERT INTO public."Trajetoria_Curso" (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
