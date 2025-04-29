@@ -266,6 +266,8 @@ def process_rais_6_2021(tabela6_csv, output_csv):
         'Renumeração': 'media_remuneracao'
     }, inplace=True)
 
+    df_uf['media_remuneracao'] = df_uf['media_remuneracao'].str.replace(',', '', regex=False)
+
     output_file_uf = os.path.join(output_csv, 'rais_tabela6_2021.csv')
     if os.path.exists(output_file_uf):
         open(output_file_uf, 'w').close()
@@ -397,6 +399,9 @@ def process_rais_6_2023(tabela6_csv, output_csv):
         'Renumeração': 'media_remuneracao'
     }, inplace=True)
 
+    df_uf['media_remuneracao'] = df_uf['media_remuneracao'].str.replace('.', '', regex=False)
+    df_uf['media_remuneracao'] = df_uf['media_remuneracao'].str.replace(',', '.', regex=False)
+
     output_file_uf = os.path.join(output_csv, 'rais_tabela6_2023.csv')
     if os.path.exists(output_file_uf):
         open(output_file_uf, 'w').close()
@@ -480,7 +485,6 @@ def join_rais_6(rais_6_2021, rais_6_2023, output_csv):
     df_joined = df_joined.merge(lookup_df[['uf_nome', 'uf_sigla']], on='uf_nome', how='left')
 
     df_joined['ano'] = df_joined['ano'].astype(int)
-    df_joined['media_remuneracao'] = df_joined['media_remuneracao'].str.replace(',', '', regex=False)
 
     output_file = os.path.join(output_csv, 'rais_tabela6_joined.csv')
     if os.path.exists(output_file):
