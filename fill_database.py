@@ -162,16 +162,15 @@ def load_education_data(cursor, connection, education_path):
     return
 
 
-def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
+def load_rais_4_data(cursor, connection, rais_4_path):
     """ Load RAIS data from CSV files into the database.
 
     Args:
         cursor: The database cursor.
         connection: The database connection.
         rais_4_path: Path to the RAIS Tabela 4 CSV file.
-        rais_6_path: Path to the RAIS Tabela 6 CSV file.
     """
-    print(f"\nLoading RAIS data from {rais_4_path} and {rais_6_path}...")
+    print(f"\nLoading RAIS data from {rais_4_path}...")
     processed_rows = 0
     skipped_rows = 0
 
@@ -250,6 +249,15 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
     finally:
         print(f"\nFinished loading {rais_4_path}. Total rows processed: {processed_rows + skipped_rows}, Inserted: {processed_rows}, Skipped: {skipped_rows}.")
 
+def load_rais_6_data(cursor, connection, rais_6_path):
+    """ Load RAIS Tabela 6 data from a CSV file into the database.
+
+    Args:
+        cursor: The database cursor.
+        connection: The database connection.
+        rais_6_path: Path to the RAIS Tabela 6 CSV file.
+    """
+    print(f"\nLoading RAIS Tabela 6 data from {rais_6_path}...")
     processed_rows = 0
     skipped_rows = 0
 
@@ -324,7 +332,8 @@ def main(datasets_directory):
 
         rais_4_path = f'{datasets_directory}/rais_tabela4_joined.csv'
         rais_6_path = f'{datasets_directory}/rais_tabela6_joined.csv'
-        load_rais_data(cursor, connection, rais_4_path, rais_6_path)
+        load_rais_4_data(cursor, connection, rais_4_path)
+        load_rais_6_data(cursor, connection, rais_6_path)
 
         connection.commit()
         print("Dados inseridos com sucesso.")
