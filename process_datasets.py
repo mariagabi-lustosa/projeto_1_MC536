@@ -5,6 +5,26 @@ import re
 import unicodedata
 from rapidfuzz import fuzz, process
 
+lookup_df = pd.DataFrame({
+    'CO_UF': [
+        12, 27, 13, 16, 29, 23, 53, 32, 52, 21, 31, 50,
+        51, 15, 25, 26, 22, 41, 33, 24, 43, 11, 14, 42,
+        28, 35, 17
+    ],
+    'uf_sigla': [
+        'AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS',
+        'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC',
+        'SE', 'SP', 'TO'
+    ],
+    'uf_nome': [
+        'Acre', 'Alagoas', 'Amazonas', 'Amapá', 'Bahia', 'Ceará', 'Distrito Federal', 'Espírito Santo',
+        'Goiás', 'Maranhão', 'Minas Gerais', 'Mato Grosso do Sul', 'Mato Grosso', 'Pará',
+        'Paraíba', 'Pernambuco', 'Piauí', 'Paraná', 'Rio de Janeiro', 'Rio Grande do Norte',
+        'Rio Grande do Sul', 'Rondônia', 'Roraima', 'Santa Catarina', 'Sergipe',
+        'São Paulo', 'Tocantins'
+    ]
+})
+
 def normalize_string(s):
     """ Normalize a string by removing special characters and converting to lowercase.
     Args:
@@ -50,6 +70,9 @@ def process_indicadores(indicadores_csv, output_csv):
         low_memory=False,
         header=0
     )
+
+    # Match the UF codes with the lookup table
+    df = df.merge(lookup_df, on='CO_UF', how='left')
     
     # Delete unnecessary columns
     df.drop(columns=['CO_REGIAO', 'CO_UF', 'CO_MUNICIPIO', 'CO_CINE_ROTULO', 'NO_CINE_ROTULO', 'NU_ANO_INGRESSO', 'NU_PRAZO_INTEGRALIZACAO', 'NU_ANO_INTEGRALIZACAO', 'NU_PRAZO_ACOMPANHAMENTO', 'NU_ANO_MAXIMO_ACOMPANHAMENTO', 'QT_PERMANENCIA', 'QT_DESISTENCIA', 'QT_FALECIDO', 'TAP', 'TCA', 'TCAN', 'TADA'], inplace=True)
@@ -71,9 +94,6 @@ def process_indicadores(indicadores_csv, output_csv):
         'QT_CONCLUINTE': 'num_concluintes',
         'TDA': 'taxa_desistencia'
     }, inplace=True)
-
-    # Select relevant columns
-    df = df[['inst_cod', 'inst_nome', 'categoria_adm', 'org_academica', 'curso_cod', 'curso_nome', 'grau_academico', 'modo_ensino', 'area_cod', 'nome_area_atuacao', 'ano_referencia', 'num_ingressantes', 'num_concluintes', 'taxa_desistencia']]
 
     # Save the processed DataFrame to a new CSV file
 
@@ -427,6 +447,8 @@ def join_rais_6(rais_6_2021, rais_6_2023, output_csv):
 
     df_joined = pd.concat([df_rais_6_2021, df_rais_6_2023], ignore_index=True)
 
+    df_joined = df_joined.merge(lookup_df[['uf_nome', 'uf_sigla']], on='uf_nome', how='left')
+
     df_joined['ano'] = df_joined['ano'].astype(int)
 
     output_file = os.path.join(output_csv, 'rais_tabela6_joined.csv')
@@ -438,13 +460,15 @@ def join_rais_6(rais_6_2021, rais_6_2023, output_csv):
     return
 
 
-def main(indicadores_csv, rais_4_csv, rais_6_csv, output_csv):
+def main(indicadores_csv, rais_4_csv, rais_6_csv, bool_rais4, bool_rais6, output_csv):
     """ Main function to process the CSV files.
 
     Args:
         indicadores_csv: Path to the CSV file containing the indicadores data.
         rais_4_csv: Path to the CSV file containing the RAIS Tabela 4 data.
         rais_6_csv: Path to the CSV file containing the RAIS Tabela 6 data.
+        bool_rais4: Boolean to recreate the RAIS Tabela 4 data.
+        bool_rais6: Boolean to recreate the RAIS Tabela 6 data.
         output_csv: Path to the directory where the processed CSV file will be saved.
     """
     if indicadores_csv is not None and output_csv is not None:
@@ -460,15 +484,15 @@ def main(indicadores_csv, rais_4_csv, rais_6_csv, output_csv):
         if "2023" in rais_6_csv:
             process_rais_6_2023(rais_6_csv, output_csv)
 
-    rais_4_2021 = f"{output_csv}rais_tabela4_2021.csv"
-    rais_4_2023 = f"{output_csv}rais_tabela4_2023.csv"
-    rais_6_2021 = f"{output_csv}rais_tabela6_2021.csv"
-    rais_6_2023 = f"{output_csv}rais_tabela6_2023.csv"
+    rais_4_2021 = f"{output_csv}/rais_tabela4_2021.csv"
+    rais_4_2023 = f"{output_csv}/rais_tabela4_2023.csv"
+    rais_6_2021 = f"{output_csv}/rais_tabela6_2021.csv"
+    rais_6_2023 = f"{output_csv}/rais_tabela6_2023.csv"
 
     # Check if the files exist
-    if os.path.exists(rais_4_2021) and os.path.exists(rais_4_2023):
+    if os.path.exists(rais_4_2021) and os.path.exists(rais_4_2023) and bool_rais4 == "True":
         join_rais_4(rais_4_2021, rais_4_2023, output_csv)
-    if os.path.exists(rais_6_2021) and os.path.exists(rais_6_2023):
+    if os.path.exists(rais_6_2021) and os.path.exists(rais_6_2023) and bool_rais6 == "True":
         join_rais_6(rais_6_2021, rais_6_2023, output_csv)
     return
 
@@ -496,6 +520,18 @@ if __name__ == "__main__":
         help="Path to the CSV file containing the RAIS Tabela 6 data."
     )
     parser.add_argument(
+        "-b4",
+        "--bool_rais4",
+        default=False,
+        help="Boolean to recreate the RAIS Tabela 4 data."
+    )
+    parser.add_argument(
+        "-b6",
+        "--bool_rais6",
+        default=False,
+        help="Boolean to recreate the RAIS Tabela 6 data."
+    )
+    parser.add_argument(
         "-o",
         "--output",
         default=None,
@@ -505,5 +541,8 @@ if __name__ == "__main__":
     indicadores_csv = args.indicadores
     rais_4_csv = args.rais_4
     rais_6_csv = args.rais_6
+    bool_rais4 = args.bool_rais4
+    bool_rais6 = args.bool_rais6
     output_csv = args.output
-    main(indicadores_csv, rais_4_csv, rais_6_csv, output_csv)
+
+    main(indicadores_csv, rais_4_csv, rais_6_csv, bool_rais4, bool_rais6, output_csv)

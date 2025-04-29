@@ -28,22 +28,13 @@ CREATE TABLE IF NOT EXISTS public."Emprego_Por_Setor_E_Municipio"
     CONSTRAINT "Emprego_Por_Setor_E_Municipio_pkey" PRIMARY KEY (ano, municipio_cod, setor_nome)
 );
 
-CREATE TABLE IF NOT EXISTS public."Estabelecimento_Economico_Por_UF"
-(
-    ano integer NOT NULL,
-    uf_sigla character(2) COLLATE pg_catalog."default",
-    estab_total integer,
-    estab_com_vinculo integer,
-    estab_sem_vinculo integer,
-    CONSTRAINT "Estabelecimento_Economico_pkey" PRIMARY KEY (ano)
-);
-
 CREATE TABLE IF NOT EXISTS public."Instituicao_Superior"
 (
     inst_cod integer NOT NULL,
     inst_nome character varying(150) COLLATE pg_catalog."default",
     categoria_adm character varying(50) COLLATE pg_catalog."default",
     org_academica character varying(50) COLLATE pg_catalog."default",
+    uf_sigla character(2) NOT NULL,
     CONSTRAINT "Instituicao_Superior_pkey" PRIMARY KEY (inst_cod)
 );
 
@@ -122,11 +113,12 @@ ALTER TABLE IF EXISTS public."Emprego_Por_Setor_E_Municipio"
     ON DELETE NO ACTION;
 
 
-ALTER TABLE IF EXISTS public."Estabelecimento_Economico_Por_UF"
+ALTER TABLE IF EXISTS public."Instituicao_Superior"
     ADD CONSTRAINT uf_sigla FOREIGN KEY (uf_sigla)
     REFERENCES public."Unidade Federativa" (uf_sigla) MATCH SIMPLE
     ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
 ALTER TABLE IF EXISTS public."Municipio"

@@ -1,8 +1,10 @@
 import csv
 import psycopg2
 import sys
+import argparse
+import os
 
-# Mapas em memória
+# Global maps to track unique values for each table
 area_map = {}
 curso_map = {}
 instituicao_map = {}
@@ -11,18 +13,37 @@ instituicao_map = {}
 #setor_map = {}
 
 def safe_int(value, default=None):
+    """ Converts a value to an integer, returning a default if conversion fails.
+    
+    Args:
+        value: The value to convert.
+        default: The default value to return if conversion fails.
+    """
     try:
         return int(value)
     except (ValueError, TypeError):
         return default
 
 def safe_float(value, default=None):
+    """ Converts a value to a float, returning a default if conversion fails.
+
+    Args:
+        value: The value to convert.
+        default: The default value to return if conversion fails.
+    """
     try:
         return float(value)
     except (ValueError, TypeError):
         return default
 
-def load_education_data(cursor, conn, file_path):
+def load_education_data(cursor, connection, file_path):
+    """ Load education data from a CSV file into the database.
+
+    Args:
+        cursor: The database cursor.
+        connection: The database connection.
+        file_path: Path to the CSV file.
+    """
     print(f"\nLoading data from {file_path}...")
     processed_rows = 0
     skipped_rows = 0
@@ -33,16 +54,16 @@ def load_education_data(cursor, conn, file_path):
 
             for row in reader:
                 try:
-                    # Extrai e limpa os dados
-                    area_cod = row['area_cod'].strip()
+                    # Extract and clean data from the row
+                    area_cod = row['area_cod']
                     nome_area_atuacao = row['nome_area_atuacao'].strip()
 
-                    curso_cod = safe_int(row['curso_cod'])
+                    curso_cod = row['curso_cod']
                     curso_nome = row['curso_nome'].strip()
-                    grau_academico = row['grau_academico'].strip()
+                    grau_academico = row['grau_academico']
                     modo_ensino = row['modo_ensino'].strip()
 
-                    inst_cod = safe_int(row['inst_cod'])
+                    inst_cod = row['inst_cod']
                     inst_nome = row['inst_nome'].strip()
                     categoria_adm = row['categoria_adm'].strip()
                     org_academica = row['org_academica'].strip()
@@ -213,7 +234,7 @@ def load_education_data(cursor, conn, file_path):
                     skipped_rows += 1
                 except psycopg2.Error as e:
                     print(f"Database error processing row: {row} - Error: {e}")
-                    conn.rollback()
+                    connection.rollback()
                     skipped_rows += 1
 
                 if (processed_rows + skipped_rows) % 500 == 0:
@@ -229,32 +250,52 @@ def load_education_data(cursor, conn, file_path):
     finally:
         print(f"\nFinished loading {file_path}. Total rows processed: {processed_rows + skipped_rows}, Inserted: {processed_rows}, Skipped: {skipped_rows}.")
 
-def main():
+def main(datasets_directory):
+    """ Main function to load data into the database.
+
+    Args:
+        datasets_directory: Directory containing the datasets to load.
+    """
     try:
-        conn = psycopg2.connect(
+        connection = psycopg2.connect(
             dbname='projeto_1',
             user='postgres',
             password='Maria1221@@',
             host='localhost',
             port='5432'
         )
-        cursor = conn.cursor()
+        cursor = connection.cursor()
 
-        file_path = 'datasets/indicadores_educacao.csv'
-        load_education_data(cursor, conn, file_path)
+        education_path = f'{datasets_directory}/indicadores_educacao.csv'
+        load_education_data(cursor, connection, file_path)
 
-        conn.commit()
+        rais_4_path = f'{datasets_directory}/rais_tabela4_joined.csv'
+        rais_6_path = f'{datasets_directory}/rais_tabela6_joined.csv'
+        load_rais_data(cursor, connection, rais_4_path, rais_6_path)
+
+        connection.commit()
         print("Dados inseridos com sucesso.")
 
     except Exception as e:
         print(f"Erro: {e}")
-        if conn:
-            conn.rollback()
+        if connection:
+            connection.rollback()
     finally:
         if cursor:
             cursor.close()
-        if conn:
-            conn.close()
+        if connection:
+            connection.close()
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(
+        description='Load education data into the database.'
+    )
+    parser.add_argument(
+        '-d',
+        '--datasets_directory',
+        default=None,
+        help='Directory containing the datasets to load.'
+    )
+    args = parser.parse_args()
+    datasets_directory = args.datasets_directory
+    main(datasets_directory)
