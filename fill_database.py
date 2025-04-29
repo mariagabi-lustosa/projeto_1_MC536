@@ -8,9 +8,9 @@ import os
 area_map = {}
 curso_map = {}
 instituicao_map = {}
-#municipio_map = {}
+municipio_map = {}
 uf_map = {}
-#setor_map = {}
+setor_map = {}
 
 def safe_int(value, default=None):
     """ Converts a value to an integer, returning a default if conversion fails.
@@ -88,20 +88,6 @@ def load_education_data(cursor, connection, education_path):
                             (uf_sigla, uf_nome)
                         )
                         uf_map[uf_sigla] = uf_nome
-                    
-                    '''
-                    # Insere Municipio
-                    if municipio_cod and municipio_cod not in municipio_map:
-                        cursor.execute(
-                            """
-                            INSERT INTO public."Municipio" (municipio_cod, municipio_nome, uf_sigla)
-                            VALUES (%s, %s, %s)
-                            ON CONFLICT (municipio_cod) DO NOTHING;
-                            """,
-                            (municipio_cod, municipio_nome, uf_sigla)
-                        )
-                        municipio_map[municipio_cod] = municipio_nome
-                    '''
 
                     # Inserts Area_Atuacao
                     if area_cod and area_cod not in area_map:
@@ -139,46 +125,6 @@ def load_education_data(cursor, connection, education_path):
                         )
                         curso_map[curso_cod] = curso_nome
 
-                    '''
-                    # Insere Setor_Economico
-                    if setor_nome and setor_nome not in setor_map:
-                        cursor.execute(
-                            """
-                            INSERT INTO public."Setor_Economico" (setor_nome)
-                            VALUES (%s)
-                            ON CONFLICT (setor_nome) DO NOTHING;
-                            """,
-                            (setor_nome,)
-                        )
-                        setor_map[setor_nome] = setor_nome
-                    '''
-
-
-                    '''
-                    # Insere Emprego_Por_Setor_E_Municipio
-                    if ano and municipio_cod and setor_nome:
-                        cursor.execute(
-                            """
-                            INSERT INTO public."Emprego_Por_Setor_E_Municipio" (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
-                            VALUES (%s, %s, %s, %s)
-                            ON CONFLICT (ano, municipio_cod, setor_nome) DO NOTHING;
-                            """,
-                            (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
-                        )
-
-                    # Insere Remuneracao_Media_Por_UF
-                    if ano and uf_sigla and media_remuneracao is not None:
-                        cursor.execute(
-                            """
-                            INSERT INTO public."Remuneracao_Media_Por_UF" (ano, uf_sigla, media_remuneracao)
-                            VALUES (%s, %s, %s)
-                            ON CONFLICT (ano) DO NOTHING;
-                            """,
-                            (ano, uf_sigla, media_remuneracao)
-                        )
-                    '''
-
-                
                     # Inserts Trajetoria_Curso
                     if curso_cod and ano:
                         cursor.execute(
@@ -189,19 +135,6 @@ def load_education_data(cursor, connection, education_path):
                             """,
                             (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
                         )
-
-                    '''
-                    # Insere Relacao_Area_Setor
-                    if area_cod and setor_nome and grau_relacao is not None:
-                        cursor.execute(
-                            """
-                            INSERT INTO public."Relacao_Area_Setor" (area_cod, setor_nome, grau_relacao)
-                            VALUES (%s, %s, %s)
-                            ON CONFLICT (area_cod, setor_nome) DO NOTHING;
-                            """,
-                            (area_cod, setor_nome, grau_relacao)
-                        )
-                    '''
 
                     processed_rows += 1
 
@@ -225,6 +158,150 @@ def load_education_data(cursor, connection, education_path):
         raise
     finally:
         print(f"\nFinished loading {education_path}. Total rows processed: {processed_rows + skipped_rows}, Inserted: {processed_rows}, Skipped: {skipped_rows}.")
+    
+    return
+
+
+def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
+    """ Load RAIS data from CSV files into the database.
+
+    Args:
+        cursor: The database cursor.
+        connection: The database connection.
+        rais_4_path: Path to the RAIS Tabela 4 CSV file.
+        rais_6_path: Path to the RAIS Tabela 6 CSV file.
+    """
+    print(f"\nLoading RAIS data from {rais_4_path} and {rais_6_path}...")
+    processed_rows = 0
+    skipped_rows = 0
+
+    try:
+        with open(rais_4_path, 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile, delimiter=';')
+
+            for row in reader:
+                try:
+                    # Extract and clean data from the row
+                    uf_sigla = row['uf_sigla'].strip()
+
+                    municipio_cod = safe_int(row['municipio_cod'])
+                    municipio_nome = row['municipio_nome'].strip()
+
+                    setor_nome = row['setor_nome'].strip()
+
+                    ano = safe_int(row['ano'])
+                    num_pessoas_empregadas = safe_int(row['num_pessoas_empregadas'])
+                   
+                    # Inserts Setor_Economico
+                    if setor_nome and setor_nome not in setor_map:
+                        cursor.execute(
+                            """
+                            INSERT INTO public."Setor_Economico" (setor_nome)
+                            VALUES (%s)
+                            ON CONFLICT (setor_nome) DO NOTHING;
+                            """,
+                            (setor_nome,)
+                        )
+                        setor_map[setor_nome] = setor_nome
+
+                    # Inserts Municipio
+                    if municipio_cod and municipio_cod not in municipio_map:
+                        cursor.execute(
+                            """
+                            INSERT INTO public."Municipio" (municipio_cod, municipio_nome, uf_sigla)
+                            VALUES (%s, %s, %s)
+                            ON CONFLICT (municipio_cod) DO NOTHING;
+                            """,
+                            (municipio_cod, municipio_nome, uf_sigla)
+                        )
+                        municipio_map[municipio_cod] = municipio_nome
+                    
+
+                    # Inserts Emprego_Por_Setor_E_Municipio
+                    if ano and municipio_cod and setor_nome:
+                        cursor.execute(
+                            """
+                            INSERT INTO public."Emprego_Por_Setor_E_Municipio" (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
+                            VALUES (%s, %s, %s, %s)
+                            ON CONFLICT (ano, municipio_cod, setor_nome) DO NOTHING;
+                            """,
+                            (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
+                        )
+
+                    processed_rows += 1
+
+                except (KeyError, ValueError, TypeError) as e:
+                    print(f"Skipping row due to data error: {row} - Error: {e}")
+                    skipped_rows += 1
+                except psycopg2.Error as e:
+                    print(f"Database error processing row: {row} - Error: {e}")
+                    connection.rollback()
+                    skipped_rows += 1
+
+                if (processed_rows + skipped_rows) % 500 == 0:
+                    print(f"Processed {processed_rows + skipped_rows} rows...", end='\r')
+                    sys.stdout.flush()
+    except FileNotFoundError:
+        print(f"Error: File not found at {rais_4_path}")
+        raise
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        raise
+    finally:
+        print(f"\nFinished loading {rais_4_path}. Total rows processed: {processed_rows + skipped_rows}, Inserted: {processed_rows}, Skipped: {skipped_rows}.")
+
+    processed_rows = 0
+    skipped_rows = 0
+
+    try: 
+        with open(rais_6_path, 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile, delimiter=';')
+
+            for row in reader:
+                try:
+                    # Extract and clean data from the row
+                    uf_sigla = row['uf_sigla'].strip()
+                    
+                    ano = safe_int(row['ano'])
+
+                    media_remuneracao = safe_float(row['media_remuneracao'])
+
+                    # Inserts Remuneracao_Media_Por_UF
+                    if ano and uf_sigla and media_remuneracao is not None:
+                        cursor.execute(
+                            """
+                            INSERT INTO public."Remuneracao_Media_Por_UF" (ano, uf_sigla, media_remuneracao)
+                            VALUES (%s, %s, %s)
+                            ON CONFLICT (ano) DO NOTHING;
+                            """,
+                            (ano, uf_sigla, media_remuneracao)
+                        )
+
+                    processed_rows += 1
+
+                except (KeyError, ValueError, TypeError) as e:
+                    print(f"Skipping row due to data error: {row} - Error: {e}")
+                    skipped_rows += 1
+                except psycopg2.Error as e:
+                    print(f"Database error processing row: {row} - Error: {e}")
+                    connection.rollback()
+                    skipped_rows += 1
+
+                if (processed_rows + skipped_rows) % 500 == 0:
+                    print(f"Processed {processed_rows + skipped_rows} rows...", end='\r')
+                    sys.stdout.flush()
+
+    except FileNotFoundError:
+        print(f"Error: File not found at {rais_6_path}")
+        raise
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        raise
+    finally:
+        print(f"\nFinished loading {rais_6_path}. Total rows processed: {processed_rows + skipped_rows}, Inserted: {processed_rows}, Skipped: {skipped_rows}.")
+
+    return
+
 
 def main(datasets_directory):
     """ Main function to load data into the database.
