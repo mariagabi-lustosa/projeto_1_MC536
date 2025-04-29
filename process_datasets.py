@@ -109,6 +109,7 @@ def process_indicadores(indicadores_csv, output_csv):
     df['ano_referencia'] = df['ano_referencia'].astype(int)
     df['num_ingressantes'] = df['num_ingressantes'].astype(int)
     df['num_concluintes'] = df['num_concluintes'].astype(int)
+    df['taxa_desistencia'] = df['taxa_desistencia'].str.replace(',', '.', regex=False)
 
     output_file = os.path.join(output_csv, 'indicadores_educacao.csv')
 
@@ -450,6 +451,7 @@ def join_rais_6(rais_6_2021, rais_6_2023, output_csv):
     df_joined = df_joined.merge(lookup_df[['uf_nome', 'uf_sigla']], on='uf_nome', how='left')
 
     df_joined['ano'] = df_joined['ano'].astype(int)
+    df_joined['media_remuneracao'] = df_joined['media_remuneracao'].str.replace(',', '', regex=False)
 
     output_file = os.path.join(output_csv, 'rais_tabela6_joined.csv')
     if os.path.exists(output_file):

@@ -1,109 +1,109 @@
 uf_nome;ano;media_remuneracao;uf_sigla
-Rondônia;2020;3,317.01;RO
-Acre;2020;3,684.06;AC
-Amazonas;2020;3,619.58;AM
-Roraima;2020;4,001.11;RR
-Pará;2020;3,285.76;PA
-Amapá;2020;4,994.96;AP
-Tocantins;2020;3,542.29;TO
-Maranhão;2020;3,010.15;MA
-Piauí;2020;3,098.58;PI
-Ceará;2020;2,878.36;CE
-Rio Grande do Norte;2020;3,156.14;RN
-Paraíba;2020;2,804.48;PB
-Pernambuco;2020;3,064.00;PE
-Alagoas;2020;2,848.18;AL
-Sergipe;2020;3,191.95;SE
-Bahia;2020;3,053.34;BA
-Minas Gerais;2020;3,115.67;MG
-Espírito Santo;2020;3,188.21;ES
-Rio de Janeiro;2020;4,157.87;RJ
-São Paulo;2020;3,978.56;SP
-Paraná;2020;3,470.01;PR
-Santa Catarina;2020;3,404.16;SC
-Rio Grande do Sul;2020;3,619.01;RS
-Mato Grosso do Sul;2020;3,451.41;MS
-Mato Grosso;2020;3,535.85;MT
-Goiás;2020;3,245.43;GO
-Distrito Federal;2020;6,516.74;DF
-Rondônia;2021;2,952.73;RO
-Acre;2021;4,912.80;AC
-Amazonas;2021;3,288.85;AM
-Roraima;2021;3,716.91;RR
-Pará;2021;3,124.93;PA
-Amapá;2021;4,403.77;AP
-Tocantins;2021;3,282.19;TO
-Maranhão;2021;2,871.70;MA
-Piauí;2021;2,849.09;PI
-Ceará;2021;2,592.12;CE
-Rio Grande do Norte;2021;2,927.92;RN
-Paraíba;2021;2,711.03;PB
-Pernambuco;2021;2,906.56;PE
-Alagoas;2021;2,677.79;AL
-Sergipe;2021;2,903.79;SE
-Bahia;2021;2,840.82;BA
-Minas Gerais;2021;3,043.20;MG
-Espírito Santo;2021;3,005.18;ES
-Rio de Janeiro;2021;4,042.02;RJ
-São Paulo;2021;3,942.82;SP
-Paraná;2021;3,301.53;PR
-Santa Catarina;2021;3,273.25;SC
-Rio Grande do Sul;2021;3,454.36;RS
-Mato Grosso do Sul;2021;3,326.10;MS
-Mato Grosso;2021;3,421.28;MT
-Goiás;2021;3,106.54;GO
-Distrito Federal;2021;6,165.01;DF
-Rondônia;2022;3.497,61;RO
-Acre;2022;3.603,15;AC
-Amazonas;2022;3.687,11;AM
-Roraima;2022;3.514,49;RR
-Pará;2022;3.609,28;PA
-Amapá;2022;4.917,28;AP
-Tocantins;2022;3.609,96;TO
-Maranhão;2022;3.119,42;MA
-Piauí;2022;3.105,65;PI
-Ceará;2022;3.102,26;CE
-Rio Grande do Norte;2022;3.250,23;RN
-Paraíba;2022;2.942,85;PB
-Pernambuco;2022;3.185,72;PE
-Alagoas;2022;3.053,41;AL
-Sergipe;2022;3.287,43;SE
-Bahia;2022;3.151,03;BA
-Minas Gerais;2022;3.300,80;MG
-Espírito Santo;2022;3.296,52;ES
-Rio de Janeiro;2022;4.374,89;RJ
-São Paulo;2022;4.420,53;SP
-Paraná;2022;3.743,69;PR
-Santa Catarina;2022;3.770,50;SC
-Rio Grande do Sul;2022;3.891,95;RS
-Mato Grosso do Sul;2022;3.740,25;MS
-Mato Grosso;2022;3.841,03;MT
-Goiás;2022;3.470,61;GO
-Distrito Federal;2022;7.074,16;DF
-Rondônia;2023;3.427,73;RO
-Acre;2023;4.058,22;AC
-Amazonas;2023;3.919,99;AM
-Roraima;2023;3.716,51;RR
-Pará;2023;3.366,71;PA
-Amapá;2023;3.616,45;AP
-Tocantins;2023;3.302,07;TO
-Maranhão;2023;3.134,74;MA
-Piauí;2023;3.314,84;PI
-Ceará;2023;2.966,17;CE
-Rio Grande do Norte;2023;3.153,85;RN
-Paraíba;2023;2.977,25;PB
-Pernambuco;2023;3.232,40;PE
-Alagoas;2023;3.119,36;AL
-Sergipe;2023;3.382,29;SE
-Bahia;2023;3.475,67;BA
-Minas Gerais;2023;3.400,08;MG
-Espírito Santo;2023;3.430,31;ES
-Rio de Janeiro;2023;4.272,75;RJ
-São Paulo;2023;4.512,06;SP
-Paraná;2023;3.881,65;PR
-Santa Catarina;2023;4.012,46;SC
-Rio Grande do Sul;2023;3.891,99;RS
-Mato Grosso do Sul;2023;3.968,08;MS
-Mato Grosso;2023;3.643,35;MT
-Goiás;2023;3.380,65;GO
-Distrito Federal;2023;6.276,66;DF
+Rondônia;2020;3317.01;RO
+Acre;2020;3684.06;AC
+Amazonas;2020;3619.58;AM
+Roraima;2020;4001.11;RR
+Pará;2020;3285.76;PA
+Amapá;2020;4994.96;AP
+Tocantins;2020;3542.29;TO
+Maranhão;2020;3010.15;MA
+Piauí;2020;3098.58;PI
+Ceará;2020;2878.36;CE
+Rio Grande do Norte;2020;3156.14;RN
+Paraíba;2020;2804.48;PB
+Pernambuco;2020;3064.00;PE
+Alagoas;2020;2848.18;AL
+Sergipe;2020;3191.95;SE
+Bahia;2020;3053.34;BA
+Minas Gerais;2020;3115.67;MG
+Espírito Santo;2020;3188.21;ES
+Rio de Janeiro;2020;4157.87;RJ
+São Paulo;2020;3978.56;SP
+Paraná;2020;3470.01;PR
+Santa Catarina;2020;3404.16;SC
+Rio Grande do Sul;2020;3619.01;RS
+Mato Grosso do Sul;2020;3451.41;MS
+Mato Grosso;2020;3535.85;MT
+Goiás;2020;3245.43;GO
+Distrito Federal;2020;6516.74;DF
+Rondônia;2021;2952.73;RO
+Acre;2021;4912.80;AC
+Amazonas;2021;3288.85;AM
+Roraima;2021;3716.91;RR
+Pará;2021;3124.93;PA
+Amapá;2021;4403.77;AP
+Tocantins;2021;3282.19;TO
+Maranhão;2021;2871.70;MA
+Piauí;2021;2849.09;PI
+Ceará;2021;2592.12;CE
+Rio Grande do Norte;2021;2927.92;RN
+Paraíba;2021;2711.03;PB
+Pernambuco;2021;2906.56;PE
+Alagoas;2021;2677.79;AL
+Sergipe;2021;2903.79;SE
+Bahia;2021;2840.82;BA
+Minas Gerais;2021;3043.20;MG
+Espírito Santo;2021;3005.18;ES
+Rio de Janeiro;2021;4042.02;RJ
+São Paulo;2021;3942.82;SP
+Paraná;2021;3301.53;PR
+Santa Catarina;2021;3273.25;SC
+Rio Grande do Sul;2021;3454.36;RS
+Mato Grosso do Sul;2021;3326.10;MS
+Mato Grosso;2021;3421.28;MT
+Goiás;2021;3106.54;GO
+Distrito Federal;2021;6165.01;DF
+Rondônia;2022;3.49761;RO
+Acre;2022;3.60315;AC
+Amazonas;2022;3.68711;AM
+Roraima;2022;3.51449;RR
+Pará;2022;3.60928;PA
+Amapá;2022;4.91728;AP
+Tocantins;2022;3.60996;TO
+Maranhão;2022;3.11942;MA
+Piauí;2022;3.10565;PI
+Ceará;2022;3.10226;CE
+Rio Grande do Norte;2022;3.25023;RN
+Paraíba;2022;2.94285;PB
+Pernambuco;2022;3.18572;PE
+Alagoas;2022;3.05341;AL
+Sergipe;2022;3.28743;SE
+Bahia;2022;3.15103;BA
+Minas Gerais;2022;3.30080;MG
+Espírito Santo;2022;3.29652;ES
+Rio de Janeiro;2022;4.37489;RJ
+São Paulo;2022;4.42053;SP
+Paraná;2022;3.74369;PR
+Santa Catarina;2022;3.77050;SC
+Rio Grande do Sul;2022;3.89195;RS
+Mato Grosso do Sul;2022;3.74025;MS
+Mato Grosso;2022;3.84103;MT
+Goiás;2022;3.47061;GO
+Distrito Federal;2022;7.07416;DF
+Rondônia;2023;3.42773;RO
+Acre;2023;4.05822;AC
+Amazonas;2023;3.91999;AM
+Roraima;2023;3.71651;RR
+Pará;2023;3.36671;PA
+Amapá;2023;3.61645;AP
+Tocantins;2023;3.30207;TO
+Maranhão;2023;3.13474;MA
+Piauí;2023;3.31484;PI
+Ceará;2023;2.96617;CE
+Rio Grande do Norte;2023;3.15385;RN
+Paraíba;2023;2.97725;PB
+Pernambuco;2023;3.23240;PE
+Alagoas;2023;3.11936;AL
+Sergipe;2023;3.38229;SE
+Bahia;2023;3.47567;BA
+Minas Gerais;2023;3.40008;MG
+Espírito Santo;2023;3.43031;ES
+Rio de Janeiro;2023;4.27275;RJ
+São Paulo;2023;4.51206;SP
+Paraná;2023;3.88165;PR
+Santa Catarina;2023;4.01246;SC
+Rio Grande do Sul;2023;3.89199;RS
+Mato Grosso do Sul;2023;3.96808;MS
+Mato Grosso;2023;3.64335;MT
+Goiás;2023;3.38065;GO
+Distrito Federal;2023;6.27666;DF
