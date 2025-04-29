@@ -94,7 +94,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Area_Atuacao" (area_cod, nome_area_atuacao)
-                            VALUES (%d, %s)
+                            VALUES (%s, %s)
                             ON CONFLICT (area_cod) DO NOTHING;
                             """,
                             (area_cod, nome_area_atuacao)
@@ -106,7 +106,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Instituicao_Superior" (inst_cod, inst_nome, categoria_adm, org_academica, uf_sigla)
-                            VALUES (%d, %s, %d, %d, %s)
+                            VALUES (%s, %s, %s, %s, %s)
                             ON CONFLICT (inst_cod) DO NOTHING;
                             """,
                             (inst_cod, inst_nome, categoria_adm, org_academica, uf_sigla)
@@ -118,7 +118,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Curso" (curso_cod, curso_nome, grau_academico, modo_ensino, area_cod, inst_cod)
-                            VALUES (%d, %s, %d, %d, %d, %d)
+                            VALUES (%s, %s, %s, %s, %s, %s)
                             ON CONFLICT (curso_cod) DO NOTHING;
                             """,
                             (curso_cod, curso_nome, grau_academico, modo_ensino, area_cod, inst_cod)
@@ -130,7 +130,7 @@ def load_education_data(cursor, connection, education_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Trajetoria_Curso" (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
-                            VALUES (%d, %d, %d, %d, %f)
+                            VALUES (%s, %s, %s, %s, %s)
                             ON CONFLICT (curso_cod, ano_referencia) DO NOTHING;
                             """,
                             (curso_cod, ano_referencia, num_ingressantes, num_concluintes, taxa_desistencia)
@@ -162,16 +162,15 @@ def load_education_data(cursor, connection, education_path):
     return
 
 
-def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
+def load_rais_4_data(cursor, connection, rais_4_path):
     """ Load RAIS data from CSV files into the database.
 
     Args:
         cursor: The database cursor.
         connection: The database connection.
         rais_4_path: Path to the RAIS Tabela 4 CSV file.
-        rais_6_path: Path to the RAIS Tabela 6 CSV file.
     """
-    print(f"\nLoading RAIS data from {rais_4_path} and {rais_6_path}...")
+    print(f"\nLoading RAIS data from {rais_4_path}...")
     processed_rows = 0
     skipped_rows = 0
 
@@ -209,7 +208,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Municipio" (municipio_cod, municipio_nome, uf_sigla)
-                            VALUES (%d, %s, %s)
+                            VALUES (%s, %s, %s)
                             ON CONFLICT (municipio_cod) DO NOTHING;
                             """,
                             (municipio_cod, municipio_nome, uf_sigla)
@@ -222,7 +221,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Emprego_Por_Setor_E_Municipio" (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
-                            VALUES (%d, %d, %s, %d)
+                            VALUES (%s, %s, %s, %s)
                             ON CONFLICT (ano, municipio_cod, setor_nome) DO NOTHING;
                             """,
                             (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
@@ -250,6 +249,15 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
     finally:
         print(f"\nFinished loading {rais_4_path}. Total rows processed: {processed_rows + skipped_rows}, Inserted: {processed_rows}, Skipped: {skipped_rows}.")
 
+def load_rais_6_data(cursor, connection, rais_6_path):
+    """ Load RAIS Tabela 6 data from a CSV file into the database.
+
+    Args:
+        cursor: The database cursor.
+        connection: The database connection.
+        rais_6_path: Path to the RAIS Tabela 6 CSV file.
+    """
+    print(f"\nLoading RAIS Tabela 6 data from {rais_6_path}...")
     processed_rows = 0
     skipped_rows = 0
 
@@ -271,7 +279,7 @@ def load_rais_data(cursor, connection, rais_4_path, rais_6_path):
                         cursor.execute(
                             """
                             INSERT INTO public."Remuneracao_Media_Por_UF" (ano, uf_sigla, media_remuneracao)
-                            VALUES (%d, %s, %f)
+                            VALUES (%s, %s, %s)
                             ON CONFLICT (ano) DO NOTHING;
                             """,
                             (ano, uf_sigla, media_remuneracao)
@@ -324,7 +332,8 @@ def main(datasets_directory):
 
         rais_4_path = f'{datasets_directory}/rais_tabela4_joined.csv'
         rais_6_path = f'{datasets_directory}/rais_tabela6_joined.csv'
-        load_rais_data(cursor, connection, rais_4_path, rais_6_path)
+        load_rais_4_data(cursor, connection, rais_4_path)
+        load_rais_6_data(cursor, connection, rais_6_path)
 
         connection.commit()
         print("Dados inseridos com sucesso.")
