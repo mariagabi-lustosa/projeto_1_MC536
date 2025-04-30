@@ -284,7 +284,6 @@ def load_rais_6_data(cursor, connection, rais_6_path):
                             """,
                             (ano, uf_sigla, media_remuneracao)
                         )
-                        print(ano, uf_sigla, media_remuneracao)
 
                     processed_rows += 1
 
