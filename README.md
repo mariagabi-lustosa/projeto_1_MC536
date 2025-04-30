@@ -8,13 +8,13 @@
 
 ### Glossário
 
-## [Descrição do Projeto](#descrica-do-projeto)
-## [Esquema dos Databases](#esquema-dos-databases)
-## [Datasets](#datasets)
-## [Tecnologias Ultilizadas](#linguagens-ultilizadas)
-## [Organização do Projeto](#Organização-do-projeto)
-## [Data Processing](#data-processing)
-## [Queries](#queries)
+- [Descrição do Projeto](#descrica-do-projeto)
+- [Esquema dos Databases](#esquema-dos-databases)
+- [Datasets](#datasets)
+- [Tecnologias Ultilizadas](#linguagens-ultilizadas)
+- [Organização do Projeto](#Organização-do-projeto)
+- [Data Processing](#data-processing)
+- [Queries](#queries)
 
 
 ### Descrição do Projeto
@@ -58,12 +58,14 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 
 
-
 ### Tecnologias Ultilizadas
 
-**DataBase**:PostgreSQL 
-**Linguagem**: Python
-**Bibliotecas**: panda, psycopg2
+**DataBase**:PostgreSQL  
+
+**Linguagem**: Python  
+
+**Bibliotecas**: panda, psycopg2  
+
 
 ## Organização do Projeto
 
@@ -74,7 +76,7 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ## Queries
 
-** número de ingressantes em uma área em relação a média salarial na mesma, para um ano fixo**
+**número de ingressantes em uma área em relação a média salarial na mesma, para um ano fixo**
 
 
 
