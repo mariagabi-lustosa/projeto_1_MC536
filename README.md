@@ -8,10 +8,33 @@
 
 ### Glossário
 
-## [Descrição do Projeto](#Descrição do Projeto)
+## [Descrição do Projeto](#descrica-do-projeto)
 ## [Esquema dos Databases](#esquema-dos-databases)
 ## [Datasets](#datasets)
-## []
+## [Tecnologias Ultilizadas](#linguagens-ultilizadas)
+## [Estrutura do Projeto](#estrutura-do-projeto)
+## [Data Processing](#data-processing)
+## [Queries](#queries)
+
+
+### Descrição do Projeto
+
+Nosso projeto para a disciplica MC536 - Banco de Dados visa estabelecer uma ligação entre os dados de conluintes do ensino superior no Brasil em determinada área do conhecimento, e os dados referentes as ofertas de emprego para essas áreas, analisando os dados com base em UF, Município e >>>.
+
+### Descrição dos Databases
+
+![Preview do Modelo Conceitual](models/conceptual_model.png)
+![Preview do Modelo Relacional](models/relational_model.png)
+## [Modelo Físico:](models/physical_model.sql)
+
+
+
+
+### Tecnologias Ultilizadas
+
+# DataBase: PostgreSQL 
+# Linguagem: Python
+# 
 
 
 
