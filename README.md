@@ -67,16 +67,14 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ## Organização do Projeto
 
-falta atualizar isso
-<pre> ``` 📁 meu-repo/ ├── README.md ├── datasets/ │ ├── indicadores_educacao.csv │ ├── rais_tabela4_2021.csv │ ├── rais_tabela4_2023.csv │ ├── rais_tabela4_joined.csv │ ├── rais_tabela6_2021.csv │ ├── rais_tabela6_2023.csv │ └── rais_tabela6_joined.csv ├── models/ │ ├── conpectual_models.png │ ├── physical_model.sql │ └── relational_model.png ├── preprocessed_dataset/ │ ├── RAIS_ano_base_2021_TABELA4.csv │ ├── RAIS_ano_base_2021_TABELA6.csv │ ├── RAIS_ano_base_2023_TABELA4.csv │ ├── RAIS_ano_base_2023_TABELA6.csv │ └── indicadores_trajetoria_educacao_superior_2019_2023.csv ├── projeto1/ ├── arquivos/ │ ├── create_database.py │ ├── fill_database.py │ ├── process_datasets.py │ └── querries.py ├── main.py ``` </pre>
-
+<pre> 📁 meu-repo/ ├── README.md ├── datasets/ │ ├── indicadores_educacao.csv │ ├── rais_tabela4_2021.csv │ ├── rais_tabela4_2023.csv │ ├── rais_tabela4_joined.csv │ ├── rais_tabela6_2021.csv │ ├── rais_tabela6_2023.csv │ └── rais_tabela6_joined.csv ├── models/ │ ├── conpectual_models.png │ ├── physical_model.sql │ └── relational_model.png ├── preprocessed_dataset/ │ ├── RAIS_ano_base_2021_TABELA4.csv │ ├── RAIS_ano_base_2021_TABELA6.csv │ ├── RAIS_ano_base_2023_TABELA4.csv │ ├── RAIS_ano_base_2023_TABELA6.csv │ └── indicadores_trajetoria_educacao_superior_2019_2023.csv ├── projeto1/ │ └── arquivos/ │ ├── create_database.py │ ├── fill_database.py │ └── process_datasets.py ├── querries/ ├── main.py </pre>
 
 ## Data Processing
 
 
 ## Queries
 
-# número de ingressantes em uma área em relação a média salarial na mesma, para um ano fixo
+** número de ingressantes em uma área em relação a média salarial na mesma, para um ano fixo**
 
 
 
