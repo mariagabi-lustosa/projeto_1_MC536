@@ -2,7 +2,7 @@
 ## Grupo ID 2
 
 ### Membros:  
-&nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa de Oliveira - RA:83183901  
+&nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa - RA:83183901  
 &nbsp;&nbsp;&nbsp;Gabriel Cabra; - RA:83183901  
 &nbsp;&nbsp;&nbsp;Flavia Juliana Ventilari dos Santos - RA: 260438  
 
