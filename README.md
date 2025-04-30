@@ -32,9 +32,9 @@ Nosso projeto para a disciplica MC536 - Banco de Dados visa estabelecer uma liga
 
 ### Tecnologias Ultilizadas
 
-# DataBase: PostgreSQL 
-# Linguagem: Python
-# 
+## DataBase: PostgreSQL 
+## Linguagem: Python
+## 
 
 
 
