@@ -3,7 +3,7 @@
 
 ### Membros:  
 &nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa - RA:83183901  
-&nbsp;&nbsp;&nbsp;Gabriel Cabra; - RA:83183901  
+&nbsp;&nbsp;&nbsp;Gabriel Cabral - RA:83183901  
 &nbsp;&nbsp;&nbsp;Flavia Juliana Ventilari dos Santos - RA: 260438  
 
 
