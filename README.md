@@ -2,8 +2,8 @@
 ## Grupo ID 2
 
 ### Membros:  
-&nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa - RA:83183901  
-&nbsp;&nbsp;&nbsp;Gabriel Cabral - RA:83183901  
+&nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa Oliveira - RA: 188504
+&nbsp;&nbsp;&nbsp;Gabriel Cabral Romero Oliveira - RA: 247700
 &nbsp;&nbsp;&nbsp;Flavia Juliana Ventilari dos Santos - RA: 260438  
 
 
@@ -70,16 +70,49 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ## Organização do Projeto
 
-<pre> 📁 meu-repo/ ├── README.md ├── datasets/ │ ├── indicadores_educacao.csv │ ├── rais_tabela4_2021.csv │ ├── rais_tabela4_2023.csv │ ├── rais_tabela4_joined.csv │ ├── rais_tabela6_2021.csv │ ├── rais_tabela6_2023.csv │ └── rais_tabela6_joined.csv ├── models/ │ ├── conpectual_models.png │ ├── physical_model.sql │ └── relational_model.png ├── preprocessed_dataset/ │ ├── RAIS_ano_base_2021_TABELA4.csv │ ├── RAIS_ano_base_2021_TABELA6.csv │ ├── RAIS_ano_base_2023_TABELA4.csv │ ├── RAIS_ano_base_2023_TABELA6.csv │ └── indicadores_trajetoria_educacao_superior_2019_2023.csv ├── projeto1/ │ └── arquivos/ │ ├── create_database.py │ ├── fill_database.py │ └── process_datasets.py ├── querries/ ├── main.py </pre>
+📦 PROJETO_MCS36
+├── 📁 arquivos
+│   ├── create_database.py
+│   ├── fill_database.py
+│   ├── process_datasets.py
+│   └── run_queries.py
+├── 📁 datasets
+│   ├── indicadores_educacao.csv
+│   ├── rais_tabela4_2021.csv
+│   ├── rais_tabela4_2023.csv
+│   ├── rais_tabela4_joined.csv
+│   ├── rais_tabela6_2021.csv
+│   ├── rais_tabela6_2023.csv
+│   └── rais_tabela6_joined.csv
+├── 📁 models
+│   ├── conceptual_model.png
+│   ├── physical_model.sql
+│   └── relational_model.png
+├── 📁 preprocessed_dataset
+│   ├── indicadores_trajetoria_educacao_superior.csv
+│   ├── RAIS_ano_base_2021_TABELA4.csv
+│   ├── RAIS_ano_base_2021_TABELA6.csv
+│   ├── RAIS_ano_base_2023_TABELA4.csv
+│   └── RAIS_ano_base_2023_TABELA6.csv
+├── 📁 projeto1
+└── 📁 queries
+    ├── query_1_result.csv
+    ├── query_2_result.csv
+    ├── query_3_result.csv
+    ├── query_4_result.csv
+    └── query_5_result.csv
+
 
 ## Data Processing
 
 
 ## Queries
 
-**número de ingressantes em uma área em relação a média salarial na mesma, para um ano fixo**
-
-
+![Query_1:](projeto_MC536/querries/query_1_result.csv) *20 municípios com mais emprego formal em setor específico (com filtro por ano)*  
+![Query_2:](projeto_MC536/querries/query_2_result.csv) *Relação entre taxa de desistência e variação de remuneração por área em um determinado período de tempo",*  
+![Query_3:](projeto_MC536/querries/query_3_result.csv) *Relação entre estados com queda na remuneração e taxa de desistência do curso*  
+![Query_4:](projeto_MC536/querries/query_4_result.csv) *Relação entre estados com aumento de remuneração e taxa de desistência do curso*  
+![Query_5:](projeto_MC536/querries/query_5_result.csv) *Partindo de um ano de referência, identificar quantos foram os ingressantes de uma determinada área em uma instituição específica*  
 
 
 
