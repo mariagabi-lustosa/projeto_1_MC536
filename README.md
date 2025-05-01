@@ -116,7 +116,7 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 ![Query_2:](projeto_MC536/querries/query_2_result.csv) *Relação entre taxa de desistência e variação de remuneração por área em um determinado período de tempo",*  
 ![Query_3:](projeto_MC536/querries/query_3_result.csv) *Relação entre estados com queda na remuneração e taxa de desistência do curso*  
 ![Query_4:](projeto_MC536/querries/query_4_result.csv) *Relação entre estados com aumento de remuneração e taxa de desistência do curso*  
-![Query_5:](projeto_MC536/querries/query_5_result.csv) *Partindo de um ano de referência, identificar quantos foram os ingressantes de uma determinada área em uma instituição específica*  
+![Query_5:](projeto_MC536/querries/query_5_result.csv) *Partindo de um ano de referência, identifica quantos foram os ingressantes de uma determinada área em uma instituição específica*  
 
 
 
