@@ -70,7 +70,40 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ## Organização do Projeto
 
-<pre> ``` 📦 PROJETO_MCS36 ├── 📁 arquivos │ ├── create_database.py │ ├── fill_database.py │ ├── process_datasets.py │ └── run_queries.py ├── 📁 datasets │ ├── indicadores_educacao.csv │ ├── rais_tabela4_2021.csv │ ├── rais_tabela4_2023.csv │ ├── rais_tabela4_joined.csv │ ├── rais_tabela6_2021.csv │ ├── rais_tabela6_2023.csv │ └── rais_tabela6_joined.csv ├── 📁 models │ ├── conceptual_model.png │ ├── physical_model.sql │ └── relational_model.png ├── 📁 preprocessed_dataset │ ├── indicadores_trajetoria_educacao_superior.csv │ ├── RAIS_ano_base_2021_TABELA4.csv │ ├── RAIS_ano_base_2021_TABELA6.csv │ ├── RAIS_ano_base_2023_TABELA4.csv │ └── RAIS_ano_base_2023_TABELA6.csv ├── 📁 projeto1 └── 📁 queries ├── query_1_result.csv ├── query_2_result.csv ├── query_3_result.csv ├── query_4_result.csv └── query_5_result.csv ``` </pre>
+```
+📦 PROJETO_MCS36
+├── 📁 arquivos
+│   ├── create_database.py
+│   ├── fill_database.py
+│   ├── process_datasets.py
+│   └── run_queries.py
+├── 📁 datasets
+│   ├── indicadores_educacao.csv
+│   ├── rais_tabela4_2021.csv
+│   ├── rais_tabela4_2023.csv
+│   ├── rais_tabela4_joined.csv
+│   ├── rais_tabela6_2021.csv
+│   ├── rais_tabela6_2023.csv
+│   └── rais_tabela6_joined.csv
+├── 📁 models
+│   ├── conceptual_model.png
+│   ├── physical_model.sql
+│   └── relational_model.png
+├── 📁 preprocessed_dataset
+│   ├── indicadores_trajetoria_educacao_superior.csv
+│   ├── RAIS_ano_base_2021_TABELA4.csv
+│   ├── RAIS_ano_base_2021_TABELA6.csv
+│   ├── RAIS_ano_base_2023_TABELA4.csv
+│   └── RAIS_ano_base_2023_TABELA6.csv
+├── 📁 projeto1
+└── 📁 queries
+    ├── query_1_result.csv
+    ├── query_2_result.csv
+    ├── query_3_result.csv
+    ├── query_4_result.csv
+    └── query_5_result.csv
+```
+
 
 ## Data Processing
 
