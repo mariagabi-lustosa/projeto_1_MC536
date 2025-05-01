@@ -2,9 +2,9 @@
 ## Grupo ID 2
 
 ### Membros:  
-&nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa Oliveira - RA: 188504
-&nbsp;&nbsp;&nbsp;Gabriel Cabral Romero Oliveira - RA: 247700
-&nbsp;&nbsp;&nbsp;Flavia Juliana Ventilari dos Santos - RA: 260438  
+&nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa Oliveira - RA: 188504  
+&nbsp;&nbsp;&nbsp;Gabriel Cabral Romero Oliveira - RA: 247700  
+&nbsp;&nbsp;&nbsp;Flavia Juliana Ventilari dos Santos - RA: 260438     
 
 
 ### Glossário
@@ -20,7 +20,9 @@
 
 ### Descrição do Projeto
 
-Nosso projeto para a disciplica MC536 - Banco de Dados visa estabelecer uma ligação entre os dados de conluintes do ensino superior no Brasil em determinada área do conhecimento, e os dados referentes as ofertas de emprego para essas áreas, analisando os dados com base em UF, Município e ano e mais.
+Nosso projeto para a disciplica MC536 - Banco de Dados, orquestrada na Unicamp, que visa estabelecer uma ligação entre os dados de conluintes do ensino superior no Brasil em determinada área do conhecimento, e os dados referentes as ofertas de emprego para essas áreas, analisando os dados com base em UF, Município e ano e mais.
+
+Essa análise nos chamou atenção entre as ODS da ONU, para percebemos como alunos da graduação vizualizam o mercado de trabalho, e como mudanças em áreas do mercado impactam na entrada e formação em cursos da graduação que estão envolvidos com essas áreas.
 
 ### Esquema dos Databases
 
@@ -61,9 +63,9 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ### Tecnologias Ultilizadas
 
-**DataBase**:PostgreSQL  
+**DataBase**: PostgreSQL  
 
-**Linguagem**: Python  
+**Linguagem**: Python 3.13
 
 **Bibliotecas**: panda, psycopg2  
 
