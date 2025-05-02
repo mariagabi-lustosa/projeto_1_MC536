@@ -74,11 +74,6 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ```
 📦 PROJETO_MCS36
-├── 📁 python_files
-│   ├── create_database.py
-│   ├── fill_database.py
-│   ├── process_datasets.py
-│   └── run_queries.py
 ├── 📁 datasets
 │   ├── indicadores_educacao.csv
 │   ├── rais_tabela4_2021.csv
@@ -97,6 +92,11 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 │   ├── RAIS_ano_base_2021_TABELA6.csv
 │   ├── RAIS_ano_base_2023_TABELA4.csv
 │   └── RAIS_ano_base_2023_TABELA6.csv
+├── 📁 python_files
+│   ├── create_database.py
+│   ├── fill_database.py
+│   ├── process_datasets.py
+│   └── run_queries.py
 └── 📁 queries
     ├── query_1_result.csv
     ├── query_2_result.csv
