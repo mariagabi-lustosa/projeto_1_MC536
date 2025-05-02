@@ -74,7 +74,7 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ```
 📦 PROJETO_MCS36
-├── 📁 arquivos
+├── 📁 python_files
 │   ├── create_database.py
 │   ├── fill_database.py
 │   ├── process_datasets.py
@@ -97,7 +97,6 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 │   ├── RAIS_ano_base_2021_TABELA6.csv
 │   ├── RAIS_ano_base_2023_TABELA4.csv
 │   └── RAIS_ano_base_2023_TABELA6.csv
-├── 📁 projeto1
 └── 📁 queries
     ├── query_1_result.csv
     ├── query_2_result.csv
@@ -112,10 +111,14 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 ## Queries
 
-![Query_1:](querries/query_1_result.csv) *20 municípios com mais emprego formal em setor específico (com filtro por ano)*  
-![Query_2:](querries/query_2_result.csv) *Relação entre taxa de desistência e variação de remuneração por área em um determinado período de tempo",*  
-![Query_3:](querries/query_3_result.csv) *Relação entre estados com queda na remuneração e taxa de desistência do curso*  
-![Query_4:](querries/query_4_result.csv) *Relação entre estados com aumento de remuneração e taxa de desistência do curso*  
+![Query_1:](querries/query_1_result.csv) *Identifica os 20 municípios com mais empregos formais em um setor e ano específicos* 
+
+![Query_2:](querries/query_2_result.csv) *Relação entre taxa de desistência média e variação de remuneração por área do conhecimento em um determinado período de tempo*  
+
+![Query_3:](querries/query_3_result.csv) *Relação entre estados com queda na remuneração e taxa de desistência média dos cursos de graduação*  
+
+![Query_4:](querries/query_4_result.csv) *Relação entre estados com aumento de remuneração e taxa de desistência média dos cursos de graduação*  
+
 ![Query_5:](querries/query_5_result.csv) *Partindo de um ano de referência, identifica quantos foram os ingressantes de uma determinada área em uma instituição específica*  
 
 
