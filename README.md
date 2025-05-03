@@ -101,7 +101,7 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 **Tecnologias Ultilizadas:**
 
 **DataBase**: PostgreSQL  
-**pgAdmin pode ser usado para faciliar a visualização da database*
+**pgAdmin pode ser usado para faciliar a visualização do database.*
 
 **Linguagem**: Python 3.13
 
@@ -111,7 +111,7 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 Execute `create_database.py`, depois `fill_database.py`, e então `run_queries.py`.  
 O `process_dataset.py` é opcional caso deseje recriar os datasets.  
-Execute os arquivos no terminal para poder ver nosso projeto!
+Execute os arquivos no terminal para poder ver o nosso projeto!
 
 
 
