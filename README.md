@@ -12,9 +12,8 @@
 - [Descrição do Projeto](#descrica-do-projeto)
 - [Esquema dos Databases](#esquema-dos-databases)
 - [Datasets](#datasets)
-- [Tecnologias Ultilizadas](#linguagens-ultilizadas)
 - [Organização do Projeto](#Organização-do-projeto)
-- [Data Processing](#data-processing)
+- [Executando o Projeto](#executando-o-projeto)
 - [Queries](#queries)
 
 
@@ -61,15 +60,6 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 
 
 
-### Tecnologias Ultilizadas
-
-**DataBase**: PostgreSQL  
-
-**Linguagem**: Python 3.13
-
-**Bibliotecas**: panda, psycopg2  
-
-
 ## Organização do Projeto
 
 ```
@@ -106,7 +96,22 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 ```
 
 
-## Data Processing
+## Executando o Projeto
+
+**Tecnologias Ultilizadas:**
+
+**DataBase**: PostgreSQL  
+**pgAdmin pode ser usado para faciliar a visualização da database*
+
+**Linguagem**: Python 3.13
+
+**Bibliotecas do Python**: panda, psycopg2  
+
+**Scripts:**
+
+Execute `create_database.py`, depois `fill_database.py`, e então `querries.oy`. O `process_dataset.py` é opcional caso deseje recriar os datasets.  
+Execute os arquivos no terminal para poder ver nosso projeto e entender os fatores por trás do mercado de trabalho e a saída de profissionais formados no ensino superior! 
+
 
 
 ## Queries
