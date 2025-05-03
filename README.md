@@ -110,7 +110,7 @@ A seguir estão os Datases conjuntos para os anos 2021-2023, das tabelas 4 e 6.
 **Scripts:**
 
 Execute `create_database.py`, depois `fill_database.py`, e então `querries.oy`. O `process_dataset.py` é opcional caso deseje recriar os datasets.  
-Execute os arquivos no terminal para poder ver nosso projeto e entender os fatores por trás do mercado de trabalho e a saída de profissionais formados no ensino superior! 
+Execute os arquivos no terminal para poder ver nosso projeto!
 
 
 
