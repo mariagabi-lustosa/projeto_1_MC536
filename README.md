@@ -1,5 +1,5 @@
 ### Projeto de MC536 - Análise de Concluintes do Ensino Superior e Mercado de Trabalho
-## Grupo ID 22
+# Grupo ID 22
 
 ### 👥 Integrantes:  
 &nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa Oliveira - RA: 188504  
@@ -23,21 +23,21 @@ Este projeto tem como objetivo investigar a relação entre formandos e ingressa
 
 A proposta foi desenvolvida à luz dos Objetivos de Desenvolvimento Sustentável (ODS) da ONU, especialmente:
 
-    ODS 4 – Educação de Qualidade
+- ODS 4 – Educação de Qualidade
 
-        4.3: Aumentar o acesso igualitário ao ensino técnico, profissional e superior
+    4.3: Aumentar o acesso igualitário ao ensino técnico, profissional e superior
 
-        4.4: Aumentar o número de jovens e adultos com competências relevantes para o emprego
+    4.4: Aumentar o número de jovens e adultos com competências relevantes para o emprego
 
-    ODS 8 – Trabalho Decente e Crescimento Econômico
+- ODS 8 – Trabalho Decente e Crescimento Econômico
 
-        8.5: Alcançar emprego pleno e produtivo para todos
+    8.5: Alcançar emprego pleno e produtivo para todos
 
-        8.6: Reduzir a proporção de jovens sem emprego, educação ou formação
+    8.6: Reduzir a proporção de jovens sem emprego, educação ou formação
 
 Ao alinhar a análise de dados educacionais e econômicos com esses objetivos globais, o projeto busca contribuir para uma compreensão mais profunda das interações entre formação acadêmica e desenvolvimento do mercado de trabalho no Brasil.
 
-### 🧠 Modelagem Conceitual
+## 🧠 Modelagem Conceitual
 
 ![Preview do Modelo Conceitual](models/conceptual_model.png)
 
@@ -54,28 +54,28 @@ Este projeto utiliza dados provenientes de duas principais fontes públicas naci
 **RAIS (2020-2023)**
 Foram utilizadas informações da RAIS, com ênfase nos seguintes arquivos:
 
-        Tabela 4: Número de empregos formais e sua variação por cidade do país
-        ![Ano de referência: 2021](datasets/rais_tabela4_2021.csv)
-        ![Ano de referência: 2023](datasets/rais_tabela4_2021.csv)
+- Tabela 4: Número de empregos formais e sua variação por cidade do país
+    ![Ano de referência: 2021](datasets/rais_tabela4_2021.csv)
+    ![Ano de referência: 2023](datasets/rais_tabela4_2021.csv)
 
-        Tabela 6: Remuneração média por área de atuação e por estado
-        ![Ano de referência: 2021](datasets/rais_tabela6_2021.csv)
-        ![Ano de referência: 2023](datasets/rais_tabela6_2021.csv)
+- Tabela 6: Remuneração média por área de atuação e por estado
+    ![Ano de referência: 2021](datasets/rais_tabela6_2021.csv)
+    ![Ano de referência: 2023](datasets/rais_tabela6_2021.csv)
 
 Esses dados fornecem uma visão abrangente do comportamento do mercado de trabalho brasileiro nos últimos anos.
 
 **![Inep – Censo do Ensino Superior (2019–2023)](datasets/indicadores_educacao.csv)**
 A base de dados do Censo da Educação Superior abrange os anos de 2019 a 2023 e contém informações detalhadas sobre:
 
-    Cursos oferecidos por instituições de ensino superior em todo o país
+- Cursos oferecidos por instituições de ensino superior em todo o país
 
-    Classificação dos cursos por grandes áreas de atuação
+- Classificação dos cursos por grandes áreas de atuação
 
-    Possibilidade de segmentação por Unidade Federativa (UF) e ano
+- Possibilidade de segmentação por Unidade Federativa (UF) e ano
 
 Esses dados permitem associar a formação dos alunos com o contexto econômico e as demandas do mercado em cada região do Brasil.
 
-## 🗂️ Estrutura do Repositório
+### 🗂️ Estrutura do Repositório
 
 ```
 📦 PROJETO_MCS36
@@ -110,7 +110,7 @@ Esses dados permitem associar a formação dos alunos com o contexto econômico 
     └── query_5_result.csv
 ```
 
-## 🛠️ Tecnologias Utilizadas
+### 🛠️ Tecnologias Utilizadas
 **Banco de Dados:** PostgreSQL
 
 **Linguagem de Programação:** Python 3.12
@@ -171,7 +171,7 @@ As consultas SQL estão localizadas na pasta `queries/`.
 
 Utilize o pgAdmin ou outro cliente SQL para executar as consultas no banco de dados.
 
-## 📈 Queries
+### 📈 Queries
 
 ![Query_1:](queries/query_1_result.csv) *Identifica os 20 municípios com mais empregos formais em um setor e ano específicos* 
 
