@@ -51,7 +51,7 @@ Ao alinhar a análise de dados educacionais e econômicos com esses objetivos gl
 
 Este projeto utiliza dados provenientes de duas principais fontes públicas nacionais: RAIS (Relação Anual de Informações Sociais) e Censo da Educação Superior (Inep), abrangendo o período de 2019 a 2023. Os dados foram selecionados e organizados de modo a possibilitar análises combinadas entre mercado de trabalho e formação acadêmica no Brasil.
 
-**RAIS (2020-2023)**
+### RAIS (2020-2023)
 Foram utilizadas informações da RAIS, com ênfase nos seguintes arquivos:
 
 - Tabela 4: Número de empregos formais e sua variação por cidade do país
@@ -64,7 +64,7 @@ Foram utilizadas informações da RAIS, com ênfase nos seguintes arquivos:
 
 Esses dados fornecem uma visão abrangente do comportamento do mercado de trabalho brasileiro nos últimos anos.
 
-**![Inep – Censo do Ensino Superior (2019–2023)](datasets/indicadores_educacao.csv)**
+### ![Inep – Censo do Ensino Superior (2019–2023)](datasets/indicadores_educacao.csv)
 A base de dados do Censo da Educação Superior abrange os anos de 2019 a 2023 e contém informações detalhadas sobre:
 
 - Cursos oferecidos por instituições de ensino superior em todo o país
