@@ -7,7 +7,7 @@
 &nbsp;&nbsp;&nbsp;Flavia Juliana Ventilari dos Santos - RA: 260438     
 
 
-### Overview dos Arquivos
+### 📁 Overview dos Arquivos
 
 - [Descrição do Projeto](#descrica-do-projeto)
 - [Esquema dos Databases](#esquema-dos-databases)
@@ -37,14 +37,14 @@ A proposta foi desenvolvida à luz dos Objetivos de Desenvolvimento Sustentável
 
 Ao alinhar a análise de dados educacionais e econômicos com esses objetivos globais, o projeto busca contribuir para uma compreensão mais profunda das interações entre formação acadêmica e desenvolvimento do mercado de trabalho no Brasil.
 
-### Modelagem Conceitual
+### 🧠 Modelagem Conceitual
 
 ![Preview do Modelo Conceitual](models/conceptual_model.png)
 
-## Modelagem Relacional
+## 🧠 Modelagem Relacional
 ![Preview do Modelo Relacional](models/relational_model.png)
 
-## Modelagem Física
+## 🧠 Modelagem Física
 [Script de geração do banco diretamente em SQL](models/physical_model.sql)
 
 ### 📊 Datasets Utilizados
@@ -75,7 +75,7 @@ A base de dados do Censo da Educação Superior abrange os anos de 2019 a 2023 e
 
 Esses dados permitem associar a formação dos alunos com o contexto econômico e as demandas do mercado em cada região do Brasil.
 
-## Organização do Projeto
+## 🗂️ Estrutura do Repositório
 
 ```
 📦 PROJETO_MCS36
@@ -171,7 +171,7 @@ As consultas SQL estão localizadas na pasta `queries/`.
 
 Utilize o pgAdmin ou outro cliente SQL para executar as consultas no banco de dados.
 
-## Queries
+## 📈 Queries
 
 ![Query_1:](queries/query_1_result.csv) *Identifica os 20 municípios com mais empregos formais em um setor e ano específicos* 
 
@@ -183,7 +183,5 @@ Utilize o pgAdmin ou outro cliente SQL para executar as consultas no banco de da
 
 ![Query_5:](queries/query_5_result.csv) *Partindo de um ano de referência, identifica quantos foram os ingressantes de uma determinada área em uma instituição específica*  
 
-
-
-
-
+## 📄 Licença
+Este projeto é de uso acadêmico e está sujeito às diretrizes da disciplina MC536 da Unicamp oferecida no primeiro semestre de 2025.
