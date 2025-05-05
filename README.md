@@ -64,6 +64,8 @@ Foram utilizadas informações da RAIS, com ênfase nos seguintes arquivos:
 
 Esses dados fornecem uma visão abrangente do comportamento do mercado de trabalho brasileiro nos últimos anos.
 
+---
+
 ### ![Inep – Censo do Ensino Superior (2019–2023)](datasets/indicadores_educacao.csv)
 A base de dados do Censo da Educação Superior abrange os anos de 2019 a 2023 e contém informações detalhadas sobre:
 
