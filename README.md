@@ -55,12 +55,12 @@ Este projeto utiliza dados provenientes de duas principais fontes públicas naci
 Foram utilizadas informações da RAIS, com ênfase nos seguintes arquivos:
 
 - Tabela 4: Número de empregos formais e sua variação por cidade do país
-    ![Ano de referência: 2021](datasets/rais_tabela4_2021.csv)
-    ![Ano de referência: 2023](datasets/rais_tabela4_2021.csv)
+    - ![Ano de referência: 2021](datasets/rais_tabela4_2021.csv)
+    - ![Ano de referência: 2023](datasets/rais_tabela4_2021.csv)
 
 - Tabela 6: Remuneração média por área de atuação e por estado
-    ![Ano de referência: 2021](datasets/rais_tabela6_2021.csv)
-    ![Ano de referência: 2023](datasets/rais_tabela6_2021.csv)
+    - ![Ano de referência: 2021](datasets/rais_tabela6_2021.csv)
+    - ![Ano de referência: 2023](datasets/rais_tabela6_2021.csv)
 
 Esses dados fornecem uma visão abrangente do comportamento do mercado de trabalho brasileiro nos últimos anos.
 
