@@ -1,13 +1,13 @@
-### Projeto de MC536 - Análise de Concluintes do Ensino Superior e Mercado de Trabalho
-# Grupo ID 22
+# Projeto de MC536 - Análise de Concluintes do Ensino Superior e Mercado de Trabalho
+### Grupo ID 22
 
-### 👥 Integrantes:  
+## 👥 Integrantes:  
 &nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa Oliveira - RA: 188504  
 &nbsp;&nbsp;&nbsp;Gabriel Cabral Romero Oliveira - RA: 247700  
 &nbsp;&nbsp;&nbsp;Flavia Juliana Ventilari dos Santos - RA: 260438     
 
 
-### 📁 Overview dos Arquivos
+## 📁 Overview dos Arquivos
 
 - [Descrição do Projeto](#descrica-do-projeto)
 - [Esquema dos Databases](#esquema-dos-databases)
@@ -17,7 +17,7 @@
 - [Queries](#queries)
 
 
-### 🎯 Objetivo do Projeto
+## 🎯 Objetivo do Projeto
 
 Este projeto tem como objetivo investigar a relação entre formandos e ingressantes no ensino superior por área de atuação e o crescimento econômico dessas mesmas áreas no período de 2020 a 2023. A análise é realizada com base em Unidade Federativa (UF), município e ano, buscando compreender como estudantes de graduação percebem o mercado de trabalho e de que forma transformações econômicas em determinados setores impactam a escolha de cursos e a formação profissional.
 
@@ -47,7 +47,7 @@ Ao alinhar a análise de dados educacionais e econômicos com esses objetivos gl
 ## 🧠 Modelagem Física
 [Script de geração do banco diretamente em SQL](models/physical_model.sql)
 
-### 📊 Datasets Utilizados
+## 📊 Datasets Utilizados
 
 Este projeto utiliza dados provenientes de duas principais fontes públicas nacionais: RAIS (Relação Anual de Informações Sociais) e Censo da Educação Superior (Inep), abrangendo o período de 2019 a 2023. Os dados foram selecionados e organizados de modo a possibilitar análises combinadas entre mercado de trabalho e formação acadêmica no Brasil.
 
@@ -75,7 +75,7 @@ A base de dados do Censo da Educação Superior abrange os anos de 2019 a 2023 e
 
 Esses dados permitem associar a formação dos alunos com o contexto econômico e as demandas do mercado em cada região do Brasil.
 
-### 🗂️ Estrutura do Repositório
+## 🗂️ Estrutura do Repositório
 
 ```
 📦 PROJETO_MCS36
@@ -110,7 +110,7 @@ Esses dados permitem associar a formação dos alunos com o contexto econômico 
     └── query_5_result.csv
 ```
 
-### 🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 **Banco de Dados:** PostgreSQL
 
 **Linguagem de Programação:** Python 3.12
@@ -171,7 +171,7 @@ As consultas SQL estão localizadas na pasta `queries/`.
 
 Utilize o pgAdmin ou outro cliente SQL para executar as consultas no banco de dados.
 
-### 📈 Queries
+## 📈 Queries
 
 ![Query_1:](queries/query_1_result.csv) *Identifica os 20 municípios com mais empregos formais em um setor e ano específicos* 
 
@@ -183,5 +183,5 @@ Utilize o pgAdmin ou outro cliente SQL para executar as consultas no banco de da
 
 ![Query_5:](queries/query_5_result.csv) *Partindo de um ano de referência, identifica quantos foram os ingressantes de uma determinada área em uma instituição específica*  
 
-## 📄 Licença
+### 📄 Licença
 Este projeto é de uso acadêmico e está sujeito às diretrizes da disciplina MC536 da Unicamp oferecida no primeiro semestre de 2025.
