@@ -16,7 +16,7 @@
 - [Como Executar o Projeto](#Como-Executar-o-Projeto)
 - [Resultado das Queries](#Resultado-das-Queries)
 
-## 🎯 Objetivo do Projeto
+<h2 id="objetivo-do-projeto">🎯 Objetivo do Projeto</h2>
 
 Este projeto tem como objetivo investigar a relação entre formandos e ingressantes no ensino superior por área de atuação e o crescimento econômico dessas mesmas áreas no período de 2020 a 2023. A análise é realizada com base em Unidade Federativa (UF), município e ano, buscando compreender como estudantes de graduação percebem o mercado de trabalho e de que forma transformações econômicas em determinados setores impactam a escolha de cursos e a formação profissional.
 
