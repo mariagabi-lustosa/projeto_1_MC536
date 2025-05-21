@@ -114,6 +114,7 @@ Esses dados permitem associar a formação dos alunos com o contexto econômico 
 ```
 
 <h2 id="tecnologias-utilizadas">🛠️ Tecnologias Utilizadas</h2>
+
 **Banco de Dados:** `PostgreSQL==17.4`
 
 **Linguagem de Programação:** `python==3.12.7`
