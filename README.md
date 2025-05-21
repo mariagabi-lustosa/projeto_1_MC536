@@ -8,13 +8,13 @@
 
 ## 📁 Overview do Repositório
 
-- [Objetivo do Projeto](#Objetivo-do-Projeto)
-- [Modelos](#Modelos)
-- [Datasets Utilizados](#Datasets-Utilizados)
-- [Estrutura do Repositório](#Estrutura-do-Repositório)
-- [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
-- [Como Executar o Projeto](#Como-Executar-o-Projeto)
-- [Resultado das Queries](#Resultado-das-Queries)
+- [Objetivo do Projeto](#objetivo-do-projeto)
+- [Modelos](#modelos)
+- [Datasets Utilizados](#datasets-utilizados)
+- [Estrutura do Repositório](#estrutura-do-repositorio)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Como Executar o Projeto](#como-executar-o-projeto)
+- [Resultado das Queries](#resultado-das-queries)
 
 <h2 id="objetivo-do-projeto">🎯 Objetivo do Projeto</h2>
 
@@ -36,7 +36,7 @@ A proposta foi desenvolvida à luz dos Objetivos de Desenvolvimento Sustentável
 
 Ao alinhar a análise de dados educacionais e econômicos com esses objetivos globais, o projeto busca contribuir para uma compreensão mais profunda das interações entre formação acadêmica e desenvolvimento do mercado de trabalho no Brasil.
 
-## 🧠 Modelos
+<h2 id="modelos">🧠 Modelos</h2>
 
 ### Modelagem Conceitual
 
@@ -48,7 +48,7 @@ Ao alinhar a análise de dados educacionais e econômicos com esses objetivos gl
 ### Modelagem Física
 [Script de geração do banco diretamente em SQL](models/physical_model.sql)
 
-## 📊 Datasets Utilizados
+<h2 id="datasets-utilizados">📊 Datasets Utilizados</h2>
 
 Este projeto utiliza dados provenientes de duas principais fontes públicas nacionais: RAIS (Relação Anual de Informações Sociais) e Censo da Educação Superior (Inep), abrangendo o período de 2020 a 2023. Os dados foram selecionados e organizados de modo a possibilitar análises combinadas entre mercado de trabalho e formação acadêmica no Brasil.
 
@@ -78,7 +78,7 @@ A base de dados do Censo da Educação Superior abrange os anos de 2019 a 2023 e
 
 Esses dados permitem associar a formação dos alunos com o contexto econômico e as demandas do mercado em cada região do Brasil.
 
-## 🗂️ Estrutura do Repositório
+<h2 id="estrutura-do-repositorio">🗂️ Estrutura do Repositório</h2>
 
 ```
 📦 PROJETO_MCS36
@@ -113,7 +113,7 @@ Esses dados permitem associar a formação dos alunos com o contexto econômico 
     └── query_5_result.csv
 ```
 
-## 🛠️ Tecnologias Utilizadas
+<h2 id="tecnologias-utilizadas">🛠️ Tecnologias Utilizadas</h2>
 **Banco de Dados:** `PostgreSQL==17.4`
 
 **Linguagem de Programação:** `python==3.12.7`
@@ -129,7 +129,7 @@ rapidfuzz==3.13.0
     
 **Ferramentas:** `PgAdmin4==9.2: Administração do banco de dados PostgreSQL`
     
-## ⚙️ Como Executar o Projeto
+<h2 id="como-executar-o-projeto">⚙️ Como Executar o Projeto</h2>
 
 **Scripts:**
 1. Clonar o Repositório
@@ -209,7 +209,7 @@ As consultas SQL estão localizadas na pasta `queries/`.
 
 Utilize o pgAdmin ou outro cliente SQL para executar as consultas no banco de dados.
 
-## 📈  Resultado das Queries
+<h2 id="resultado-das-queries">📈  Resultado das Queries</h2>
 
 ![Query_1:](queries/query_1_result.csv) *Identifica os 20 municípios com mais empregos formais em um setor e ano específicos* 
 
