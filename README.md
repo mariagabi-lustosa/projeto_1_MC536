@@ -14,7 +14,7 @@
 - [Estrutura do Repositório](#Estrutura-do-Repositório)
 - [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
 - [Como Executar o Projeto](#Como-Executar-o-Projeto)
-- [Resultado das Queries](#-📈--Resultado-das-Queries)
+- [Resultado das Queries](#Resultado-das-Queries)
 
 ## 🎯 Objetivo do Projeto
 
