@@ -65,14 +65,6 @@ def create_database(cursor):
             CONSTRAINT "Municipio_pkey" PRIMARY KEY (municipio_cod)
         );
 
-        CREATE TABLE IF NOT EXISTS public."Relacao_Area_Setor"
-        (
-            area_cod character varying(10) COLLATE pg_catalog."default" NOT NULL,
-            setor_nome character varying(100) COLLATE pg_catalog."default" NOT NULL,
-            grau_relacao numeric(3, 2),
-            CONSTRAINT "Relacao_Area_Setor_pkey" PRIMARY KEY (area_cod, setor_nome)
-        );
-
         CREATE TABLE IF NOT EXISTS public."Remuneracao_Media_Por_UF"
         (
             ano integer NOT NULL,
@@ -188,11 +180,11 @@ def main(create_bool):
     """
     
     connection = psycopg2.connect(
-        dbname = 'name', # Change this to your database name
-        user = 'user', # Change this to your username
-        password = 'password', # Change this to your password
-        host = 'host', # Change this to your host
-        port = '9999' # Change this to your port
+        dbname = '####', # Change this to your database name
+        user = '####', # Change this to your username
+        password = '####', # Change this to your password
+        host = '####', # Change this to your host
+        port = '####' # Change this to your port
     )
     cursor = connection.cursor()
 
