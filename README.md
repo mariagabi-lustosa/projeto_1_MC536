@@ -1,4 +1,4 @@
-# Projeto de MC536 - Análise de Concluintes do Ensino Superior e Mercado de Trabalho
+# Projeto 1 de MC536 - Análise de Concluintes do Ensino Superior e Mercado de Trabalho
 
 ## 👥 Integrantes (ID 22):  
 &nbsp;&nbsp;&nbsp;Maria Gabriela Lustosa Oliveira - RA: 188504  
