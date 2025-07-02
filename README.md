@@ -40,7 +40,7 @@ Ao alinhar a análise de dados educacionais e econômicos com esses objetivos gl
 
 ### Modelagem Conceitual
 
-![Preview do Modelo Conceitual](models/conceptual_model.svg)
+![Preview do Modelo Conceitual](models/conceptual_model.png)
 
 ### Modelagem Relacional
 ![Preview do Modelo Relacional](models/relational_model.png)
