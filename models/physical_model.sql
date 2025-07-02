@@ -19,13 +19,13 @@ CREATE TABLE IF NOT EXISTS public."Curso"
     CONSTRAINT "Curso_pkey" PRIMARY KEY (curso_cod)
 );
 
-CREATE TABLE IF NOT EXISTS public."Emprego_Por_Setor_E_Municipio"
+CREATE TABLE IF NOT EXISTS public."Empregabilidade"
 (
     ano integer NOT NULL,
     municipio_cod integer NOT NULL,
     setor_nome character varying(100) COLLATE pg_catalog."default" NOT NULL,
     num_pessoas_empregadas integer,
-    CONSTRAINT "Emprego_Por_Setor_E_Municipio_pkey" PRIMARY KEY (ano, municipio_cod, setor_nome)
+    CONSTRAINT "Empregabilidade_pkey" PRIMARY KEY (ano, municipio_cod, setor_nome)
 );
 
 CREATE TABLE IF NOT EXISTS public."Instituicao_Superior"
@@ -54,12 +54,12 @@ CREATE TABLE IF NOT EXISTS public."Relacao_Area_Setor"
     CONSTRAINT "Relacao_Area_Setor_pkey" PRIMARY KEY (area_cod, setor_nome)
 );
 
-CREATE TABLE IF NOT EXISTS public."Remuneracao_Media_Por_UF"
+CREATE TABLE IF NOT EXISTS public."Remuneracao_Media"
 (
     ano integer NOT NULL,
     uf_sigla character(2) COLLATE pg_catalog."default",
     media_remuneracao numeric(10, 2),
-    CONSTRAINT "Remuneracao_Media_Por_UF_pkey" PRIMARY KEY (ano)
+    CONSTRAINT "Remuneracao_Media_pkey" PRIMARY KEY (ano)
 );
 
 CREATE TABLE IF NOT EXISTS public."Setor_Economico"
@@ -99,14 +99,14 @@ ALTER TABLE IF EXISTS public."Curso"
     ON DELETE NO ACTION;
 
 
-ALTER TABLE IF EXISTS public."Emprego_Por_Setor_E_Municipio"
+ALTER TABLE IF EXISTS public."Empregabilidade"
     ADD CONSTRAINT municipio_cod FOREIGN KEY (municipio_cod)
     REFERENCES public."Municipio" (municipio_cod) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION;
 
 
-ALTER TABLE IF EXISTS public."Emprego_Por_Setor_E_Municipio"
+ALTER TABLE IF EXISTS public."Empregabilidade"
     ADD CONSTRAINT setor_nome FOREIGN KEY (setor_nome)
     REFERENCES public."Setor_Economico" (setor_nome) MATCH SIMPLE
     ON UPDATE NO ACTION
@@ -142,7 +142,7 @@ ALTER TABLE IF EXISTS public."Relacao_Area_Setor"
     ON DELETE NO ACTION;
 
 
-ALTER TABLE IF EXISTS public."Remuneracao_Media_Por_UF"
+ALTER TABLE IF EXISTS public."Remuneracao_Media"
     ADD CONSTRAINT uf_sigla FOREIGN KEY (uf_sigla)
     REFERENCES public."Unidade Federativa" (uf_sigla) MATCH SIMPLE
     ON UPDATE NO ACTION

@@ -158,6 +158,9 @@ def load_education_data(cursor, connection, education_path):
         raise
     finally:
         print(f"\nFinished loading {education_path}. Total rows processed: {processed_rows + skipped_rows}, Inserted: {processed_rows}, Skipped: {skipped_rows}.")
+
+    connection.commit()
+    print("UFs e dados de educação inseridos e commitados com sucesso.")
     
     return
 
@@ -216,11 +219,11 @@ def load_rais_4_data(cursor, connection, rais_4_path):
                         municipio_map[municipio_cod] = municipio_nome
                     
 
-                    # Inserts Emprego_Por_Setor_E_Municipio
+                    # Inserts Empregabilidade
                     if ano and municipio_cod and setor_nome:
                         cursor.execute(
                             """
-                            INSERT INTO public."Emprego_Por_Setor_E_Municipio" (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
+                            INSERT INTO public."Empregabilidade" (ano, municipio_cod, setor_nome, num_pessoas_empregadas)
                             VALUES (%s, %s, %s, %s)
                             ON CONFLICT (ano, municipio_cod, setor_nome) DO NOTHING;
                             """,
@@ -274,11 +277,11 @@ def load_rais_6_data(cursor, connection, rais_6_path):
 
                     media_remuneracao = safe_float(row['media_remuneracao'])
 
-                    # Inserts Remuneracao_Media_Por_UF
+                    # Inserts Remuneracao_Media
                     if ano and uf_sigla and media_remuneracao is not None:
                         cursor.execute(
                             """
-                            INSERT INTO public."Remuneracao_Media_Por_UF" (ano, uf_sigla, media_remuneracao)
+                            INSERT INTO public."Remuneracao_Media" (ano, uf_sigla, media_remuneracao)
                             VALUES (%s, %s, %s)
                             ON CONFLICT (ano, uf_sigla) DO NOTHING;
                             """,
@@ -319,11 +322,11 @@ def main(datasets_directory):
     """
     try:
         connection = psycopg2.connect(
-            dbname='name', # Change this to your actual database name
-            user='user', # Change this to your actual username
-            password='password', # Change this to your actual password
-            host='host', # Change this to your actual host
-            port='9999' # Change this to your actual port
+            dbname='', # Change this to your actual database name
+            user='', # Change this to your actual username
+            password='', # Change this to your actual password
+            host='', # Change this to your actual host
+            port='' # Change this to your actual port
         )
         cursor = connection.cursor()
         

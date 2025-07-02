@@ -1,46 +1,55 @@
 import psycopg2
 import pandas as pd
+import os
 
-DB_NAME='database' # Change this to your actual database name
-DB_USER='user' # Change this to your actual username
-DB_PASS='password' # Change this to your actual password
-DB_HOST='host' # Change this to your actual host
-DB_PORT='9999' # Change this to your actual port
+DB_NAME='' # Change this to your actual database name
+DB_USER='' # Change this to your actual username
+DB_PASS='' # Change this to your actual password
+DB_HOST='' # Change this to your actual host
+DB_PORT='' # Change this to your actual port
 
-def execute_query(query_index, description, sql_query):
-    """ Executes a SQL query and prints the results in a formatted way. 
+def execute_query(query_index, description, sql_query, parameters=None):
+    """Executes a SQL query and prints only the result.
 
     Args:
         query_index (int): The index of the query.
         description (str): A description of the query.
         sql_query (str): The SQL query to be executed.
+        parameters (list or tuple): Optional query parameters.
     """
-    connection = None
-    print(f"\n--- Query {query_index}: {description} ---")
-    print("SQL:")
-    print(sql_query)
-    print("\nResults:")
 
+    connection = None
     try:
         connection = psycopg2.connect(
             dbname=DB_NAME, user=DB_USER, password=DB_PASS,
             host=DB_HOST, port=DB_PORT
         )
         cursor = connection.cursor()
-        cursor.execute(sql_query)
+
+        if parameters:
+            cursor.execute(sql_query, parameters)
+        else:
+            cursor.execute(sql_query)
 
         if cursor.description:
             colnames = [desc[0] for desc in cursor.description]
             results = cursor.fetchall()
 
+            print(f"\n--- Query {query_index} Result: {description} ---")
             if results:
                 df = pd.DataFrame(results, columns=colnames)
                 print(df.to_string(index=False))
-                df.to_csv(f'query_{query_index}_result.csv', index=False)
+
+                output_dir = os.path.join(os.path.dirname(__file__), '..', 'queries')
+                os.makedirs(output_dir, exist_ok=True)
+
+                output_path = os.path.join(output_dir, f'query_{query_index}_result.csv')
+                df.to_csv(output_path, index=False)
             else:
-                print("Query correctly executed, but no results.")
+                print("Query executed successfully, but returned no results.")
         else:
-            print("Query correctly executed (no return).")
+            print(f"\n--- Query {query_index}: {description} ---")
+            print("Query executed successfully (no return).")
 
     except psycopg2.Error as e:
         print(f"\nDatabase error in query {query_index}: {e}")
@@ -55,30 +64,31 @@ def execute_query(query_index, description, sql_query):
             cursor.close()
         if connection:
             connection.close()
-    print("-" * (len(description) + 14))
+
 
 def main():
     """ Main function to execute a series of SQL queries. """
     query_1 = [
-            1,
-            "Identifica os 20 municípios com mais empregos formais em um setor e ano específicos",
-            """
-            SELECT 
-                m.municipio_nome,
-                uf.uf_sigla,
-                s.setor_nome,
-                ep.ano,
-                ep.num_pessoas_empregadas
-            FROM "Emprego_Por_Setor_E_Municipio" ep
-            JOIN "Municipio" m ON ep.municipio_cod = m.municipio_cod
-            JOIN "Unidade_Federativa" uf ON m.uf_sigla = uf.uf_sigla
-            JOIN "Setor_Economico" s ON ep.setor_nome = s.setor_nome
-            WHERE s.setor_nome ILIKE '%Agropecuária%' AND ep.ano = 2023
-            ORDER BY ep.num_pessoas_empregadas DESC
-            LIMIT 20;
-            """
+        1,
+        "Identifica os 20 municípios com mais empregos formais em um setor e ano específicos",
+        """
+        SELECT 
+            m.municipio_nome,
+            uf.uf_sigla,
+            s.setor_nome,
+            ep.ano,
+            ep.num_pessoas_empregadas
+        FROM "Empregabilidade" ep
+        JOIN "Municipio" m ON ep.municipio_cod = m.municipio_cod
+        JOIN "Unidade_Federativa" uf ON m.uf_sigla = uf.uf_sigla
+        JOIN "Setor_Economico" s ON ep.setor_nome = s.setor_nome
+        WHERE s.setor_nome ILIKE %s AND ep.ano = %s
+        ORDER BY ep.num_pessoas_empregadas DESC
+        LIMIT 20;
+        """,
+        ['%Agropecuária%', 2023]
     ]
-    execute_query(query_1[0], query_1[1], query_1[2])
+    execute_query(query_1[0], query_1[1], query_1[2], query_1[3])
 
     query_2 = [
         2,
@@ -103,8 +113,8 @@ def main():
             FROM "Curso" c
             JOIN "Area_Atuacao" a ON c.area_cod = a.area_cod
             JOIN "Instituicao_Superior" i ON c.inst_cod = i.inst_cod
-            JOIN "Remuneracao_Media_Por_UF" r_ini ON r_ini.uf_sigla = i.uf_sigla AND r_ini.ano = 2020
-            JOIN "Remuneracao_Media_Por_UF" r_fim ON r_fim.uf_sigla = i.uf_sigla AND r_fim.ano = 2023
+            JOIN "Remuneracao_Media" r_ini ON r_ini.uf_sigla = i.uf_sigla AND r_ini.ano = 2020
+            JOIN "Remuneracao_Media" r_fim ON r_fim.uf_sigla = i.uf_sigla AND r_fim.ano = 2023
             GROUP BY a.area_cod
         )
 
@@ -115,9 +125,10 @@ def main():
         FROM TaxaDesistenciaPorArea t
         JOIN RemuneracaoPorArea r ON t.area_cod = r.area_cod
         ORDER BY variacao_remuneracao DESC NULLS LAST;
-        """
+        """,
+        [2020, 2023, 2020, 2023]
     ]
-    execute_query(query_2[0], query_2[1], query_2[2])
+    execute_query(query_2[0], query_2[1], query_2[2], query_2[3])
 
     query_3 = [
         3,
@@ -128,7 +139,7 @@ def main():
                 uf_sigla,
                 MAX(CASE WHEN ano = 2023 THEN media_remuneracao END) -
                 MIN(CASE WHEN ano = 2020 THEN media_remuneracao END) AS delta_remuneracao
-            FROM "Remuneracao_Media_Por_UF"
+            FROM "Remuneracao_Media"
             WHERE ano IN (2020, 2023)
             GROUP BY uf_sigla
         ),
@@ -152,9 +163,10 @@ def main():
         JOIN "Unidade_Federativa" uf ON uf.uf_sigla = d.uf_sigla
         WHERE d.delta_desistencia > 0 AND r.delta_remuneracao < 0
         ORDER BY d.delta_desistencia DESC;
-        """
+        """,
+        [2023, 2020, 2020, 2023, 2023, 2020, 2020, 2023]
     ]
-    execute_query(query_3[0], query_3[1], query_3[2])
+    execute_query(query_3[0], query_3[1], query_3[2], query_3[3])
 
     query_4 = [
         4,
@@ -165,7 +177,7 @@ def main():
                 uf_sigla,
                 MAX(CASE WHEN ano = 2022 THEN media_remuneracao END) AS remuneracao_fim,
                 MIN(CASE WHEN ano = 2020 THEN media_remuneracao END) AS remuneracao_inicio
-            FROM "Remuneracao_Media_Por_UF"
+            FROM "Remuneracao_Media"
             WHERE ano IN (2020, 2022)
             GROUP BY uf_sigla
         ),
@@ -188,9 +200,10 @@ def main():
         JOIN "Unidade_Federativa" uf ON uf.uf_sigla = r.uf_sigla
         WHERE r.remuneracao_fim > r.remuneracao_inicio
         ORDER BY taxa_media_desistencia DESC;
-        """
+        """,
+        [2022, 2020, 2020, 2022, 2020, 2022]
     ]
-    execute_query(query_4[0], query_4[1], query_4[2])
+    execute_query(query_4[0], query_4[1], query_4[2], query_4[3])
 
     query_5 = [
         5,
@@ -212,9 +225,10 @@ def main():
                 OR i.inst_cod = 54)
         GROUP BY 
             i.inst_cod, i.inst_nome, a.nome_area_atuacao, tc.ano_referencia;
-        """
+        """,
+        [2023, 'Computação e Tecnologias da Informação e Comunicação (TIC)', '', 54]
     ]
-    execute_query(query_5[0], query_5[1], query_5[2])
+    execute_query(query_5[0], query_5[1], query_5[2], query_5[3])
 
 if __name__ == "__main__":
     main()
